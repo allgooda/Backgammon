@@ -1,0 +1,33 @@
+
+#board {
+	border: 2px solid black;
+	height: 348px;
+	width: 639px;
+	margin: 0px auto;
+	background: yellow;
+}
+
+.quadrant {
+	height: 172px;
+	width: 316px;
+	border: 2px black solid;
+	display: inline;
+	float: left;
+}
+
+.even {
+	background: red;
+}
+
+.odd {
+	background: white;
+}
+
+.space {
+	width: 30px;
+	height: 150px;
+	border: 2px solid black;
+	float: left;
+	margin: 8px 10px 0px 9px;
+}
+
