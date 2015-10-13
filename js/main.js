@@ -71,22 +71,14 @@ var amtOfDiceClicked = 0;
 
 var changeTurn = function() {
 	playerTurn *= -1;
+	$('.whitePiece').prop('disabled', false);
+	$('.whitePiece').prop('disabled', false);
 	$('.roll').prop("disabled", false);
-	$('#dice').prop("disabled", false)
+	$('.di').prop("disabled", false)
 	$('.di').css('background', '#F5F5F5');
 	diceClicked = 0;
-	amtOfDiceClicked = 2;
+	amtOfDiceClicked = 0;
 }
-
-
-//this function is to control so a player cannot move a piece on a spot with 
-// than 1 piece of the opposite color on a spot.
-// var pieceMovement = function () {
-// 	if (playerTurn === )
-// }
-
-
-
 
 //This click function rolls dice and assigns the two values
 //to variables d1 and d2
@@ -106,6 +98,8 @@ $('.roll').on('click', function(){
 //in order to assign a starting position for when a player makes
 //moves
 $('#board').on('click', '.piece', function(event) {
+	var pieceClass = ($(this).attr('class'));
+	if(!onlyClickMyPieces(pieceClass)) return;
 	if ($currentPiece) $currentPiece.removeClass('selected-piece');
 	$currentPiece = $(this);
 	$currentPiece.addClass('selected-piece');
@@ -126,8 +120,9 @@ $('#board').on('click', '.space', function(event) {
 	console.log(piece);
 	board[event.target.id - 1].push(piece[0]);
 	renderBoard();
-	if(amtOfDiceClicked !== 2) return;
-	changeTurn();
+	if(amtOfDiceClicked === 2) { 
+		changeTurn();
+	}
 });
 
 //function where i click a die and recieve the value
@@ -139,6 +134,22 @@ $('#dice').on('click', '.di', function(event) {
 	amtOfDiceClicked += 1;
 	console.log('clicked!')
 });
+
+
+//function to make sure the current player
+//can only click their pieces
+var onlyClickMyPieces = function(piece) {
+	if(playerTurn === -1 && piece === 'piece blackPiece') {
+		console.log(piece);
+		return true;
+	}
+	else if(playerTurn === 1 && piece === 'piece whitePiece') {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
 
 
 //gives me the location of a piece in the board array
@@ -180,6 +191,7 @@ var piecesInQuadrant = function(quadrant, player) {
 	return total;
 };
 
+
 var allInHomeQuad = function(player) {
 	if (player === -1) {
 		return (piecesInQuadrant(2, -1) === 0 &&
@@ -191,6 +203,10 @@ var allInHomeQuad = function(player) {
 			    piecesInQuadrant(3, 1) === 0);
 	}
 }
+
+
+
+
 
 
 //this funtion will render the board to its current 
@@ -223,52 +239,42 @@ renderBoard();
  * CREATE TEST SETUPS
  * 
  * **************************************************************************** */
-
+/*
 var setups = {};
 
 setups.blackInHomeQ = function() {
 	board = [
+	   [1, 1],
+	   [-1, -1],
+	   [],
+	   [-1, -1, -1, -1, -1], 
+	   [-1, -1, -1], 
+	   [-1, -1, -1, -1, -1],
 
-	  /* BOTTOM */
+	   [], 
+	   [], 
+	   [], 
+	   [], 
+	   [], 
+	   [1, 1, 1, 1, 1],
+	  
+	   [], 
+	   [], 
+	   [], 
+	   [], 
+	   [1, 1, 1], 
+	   [],
 
-	  /* Quadrant Bottom-Right: Black Home */
-	  /* Point 12, id: 1  */ [1, 1],
-	  /* Point 11, id: 2  */ [-1, -1],
-	  /* Point 10, id: 3  */ [],
-	  /* Point 09, id: 4  */ [-1, -1, -1, -1, -1], 
-	  /* Point 08, id: 5  */ [-1, -1, -1], 
-	  /* Point 07, id: 6  */ [-1, -1, -1, -1, -1],
-
-	  /* Quadrant Bottom-Left */
-	  /* Point 06, id: 7  */ [], 
-	  /* Point 05, id: 8  */ [], 
-	  /* Point 04, id: 9  */ [], 
-	  /* Point 03, id: 10 */ [], 
-	  /* Point 02, id: 11 */ [], 
-	  /* Point 01, id: 12 */ [1, 1, 1, 1, 1],
-
-	  /* TOP */
-
-	  /* Quadrant Top-Left */
-	  /* Point 01, id: 13 */ [], 
-	  /* Point 02, id: 14 */ [], 
-	  /* Point 03, id: 15 */ [], 
-	  /* Point 04, id: 16 */ [], 
-	  /* Point 05, id: 17 */ [1, 1, 1], 
-	  /* Point 06, id: 18 */ [],
-
-	  /* Quadrant Top-Right: White Home */
-	  /* Point 07, id: 19 */ [1, 1, 1, 1, 1], 
-	  /* Point 08, id: 20 */ [], 
-	  /* Point 09, id: 21 */ [], 
-	  /* Point 10, id: 22 */ [], 
-	  /* Point 11, id: 23 */ [], 
-	  /* Point 12, id: 24 */ []
+	   [1, 1, 1, 1, 1], 
+	   [], 
+	   [], 
+	   [], 
+	   [], 
+	   []
 	];
 
 	renderBoard();
 };
 
-
-
+*/
 
