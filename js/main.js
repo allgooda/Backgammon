@@ -34,12 +34,16 @@ $('#board').on('click', '.piece', function(event) {
 	$currentPiece = $(this);
 	$currentPiece.addClass('selected-piece');
 	// movePiece();
+	startSpot = parseInt($('#1204').parent().attr('id'));
+	endSpot = diceClicked + startSpot;
 	console.log(event.target.id);
 	event.stopPropagation();
 });
 
 $('#board').on('click', '.space', function(event) {
 	if (!$currentPiece) return;
+	console.log(endSpot);
+	if (parseInt(event.target.id) !== endSpot) return;
 	var indx1 = parseInt($currentPiece[0].id.substr(0,2));
 	var indx2 = parseInt($currentPiece[0].id.substr(2,2));
 	console.log(indx1);
