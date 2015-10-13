@@ -1,4 +1,8 @@
 
+#dice{
+	margin: 0px auto;
+
+}
 #board {
 	border: 2px solid black;
 	height: 348px;
@@ -31,7 +35,23 @@
 	margin: 8px 10px 0px 9px;
 }
 
-div.dice {
+.blackPiece {
+	height: 18px;
+	width: 18px;
+	border-radius: 50%;
+	background: black;
+	margin: 6px 6px 6px 6px;
+}
+
+.whitePiece {
+	height: 18px;
+	width: 18px;
+	border-radius: 50%;
+	background: green;
+	margin: 6px 6px 6px 6px;
+}
+
+div.di {
 	float: left;
 	width: 32px;
 	background: #F5F5F5;
@@ -40,4 +60,9 @@ div.dice {
 	font-size: 24px;
 	text-align: center;
 	margin: 5px;
+}
+
+.selected-piece {
+	border: solid 3px red;
+	margin-left: 3px;
 }
