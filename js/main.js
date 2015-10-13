@@ -1,9 +1,54 @@
 
-
+// Black is -1, white is 1
+// The board representation startes in the 
+// bottom-right and moves counter-
+// clockwise to the top-right. Points are
+// numbered left-to-right to ease visualizing
+// the board, but he DOM ids go in order
+// of the representations.
 var board = [
-[1, 1], [], [], [], [], [-1, -1, -1, -1, -1], [], [-1, -1, -1], [], [], [], [1, 1, 1, 1, 1],
-[-1, -1, -1, -1, -1], [], [], [], [1, 1, 1], [], [1, 1, 1, 1, 1], [], [], [], [], [-1, -1]
+
+  /* BOTTOM */
+
+  /* Quadrant Bottom-Right: White Home */
+  /* Point 12, id: 1  */ [1, 1],
+  /* Point 11, id: 2  */ [],
+  /* Point 10, id: 3  */ [],
+  /* Point 09, id: 4  */ [], 
+  /* Point 08, id: 5  */ [], 
+  /* Point 07, id: 6  */ [-1, -1, -1, -1, -1],
+
+  /* Quadrant Bottom-Left */
+  /* Point 06, id: 7  */ [], 
+  /* Point 05, id: 8  */ [-1, -1, -1], 
+  /* Point 04, id: 9  */ [], 
+  /* Point 03, id: 10 */ [], 
+  /* Point 02, id: 11 */ [], 
+  /* Point 01, id: 12 */ [1, 1, 1, 1, 1],
+
+  /* TOP */
+
+  /* Quadrant Top-Left */
+  /* Point 01, id: 13 */ [-1, -1, -1, -1, -1], 
+  /* Point 02, id: 14 */ [], 
+  /* Point 03, id: 15 */ [], 
+  /* Point 04, id: 16 */ [], 
+  /* Point 05, id: 17 */ [1, 1, 1], 
+  /* Point 06, id: 18 */ [],
+
+  /* Quadrant Top-Right: Black Home */
+  /* Point 07, id: 19 */ [1, 1, 1, 1, 1], 
+  /* Point 08, id: 20 */ [], 
+  /* Point 09, id: 21 */ [], 
+  /* Point 10, id: 22 */ [], 
+  /* Point 11, id: 23 */ [], 
+  /* Point 12, id: 24 */ [-1, -1]
 ];
+
+var bJail = [];
+var wJail = [];
+var bHome = [];
+var wHome = [];
 
 
 var d1;
@@ -12,6 +57,29 @@ var diceClicked;
 var startSpot = 0;
 var endSpot = 0;
 var $currentPiece = null;
+var playerTurn = -1;
+var amtOfDiceClicked = 0;
+
+//turn function - to change turns after a player finishes moving
+
+var changeTurn = function() {
+	playerTurn *= -1;
+	$('.roll').prop("disabled", false);
+	$('#dice').prop("disabled", false)
+	$('.di').css('background', '#F5F5F5');
+	diceClicked = 0;
+	amtOfDiceClicked = 2;
+}
+
+
+//this function is to control so a player cannot move a piece on a spot with 
+// than 1 piece of the opposite color on a spot.
+// var pieceMovement = function () {
+// 	if (playerTurn === )
+// }
+
+
+
 
 //This click function rolls dice and assigns the two values
 //to variables d1 and d2
@@ -23,6 +91,7 @@ $('.roll').on('click', function(){
 	d2 = Math.floor(Math.random() * 6) + 1;
 	die1.innerHTML = d1;
 	die2.innerHTML = d2;
+	$(this).prop("disabled", true);
 });
 
 //This click function attains the id of the parent div
@@ -34,14 +103,14 @@ $('#board').on('click', '.piece', function(event) {
 	$currentPiece = $(this);
 	$currentPiece.addClass('selected-piece');
 	// movePiece();
-	startSpot = parseInt($('#1204').parent().attr('id'));
+	startSpot = parseInt($(this).parent().attr('id'));
 	endSpot = diceClicked + startSpot;
 	console.log(event.target.id);
-	event.stopPropagation();
 });
 
 $('#board').on('click', '.space', function(event) {
 	if (!$currentPiece) return;
+
 	console.log(endSpot);
 	if (parseInt(event.target.id) !== endSpot) return;
 	var indx1 = parseInt($currentPiece[0].id.substr(0,2));
@@ -49,32 +118,30 @@ $('#board').on('click', '.space', function(event) {
 	console.log(indx1);
 	var piece = board[indx1].splice(indx2, 1);
 	console.log(piece);
-	board[event.target.id - 1].push(piece);
-
+	board[event.target.id - 1].push(piece[0]);
 	renderBoard();
+	if(amtOfDiceClicked !== 2) return;
+	changeTurn();
 });
 
 //function where i click a die and recieve the value
 
-$('.di').on('click', function(event) {
+$('#dice').on('click', '.di', function(event) {
 	diceClicked = parseInt($(event.target).html());
+	$(this).css('background', 'red');
+	$(this).prop('disabled', true);
+	amtOfDiceClicked += 1;
+	console.log('clicked!')
 });
 
 
-
+//gives me the location of a piece in the board array
 var pad = function(n) {
 	var s = n.toString();
 	s = s.length === 1 ? '0' + s : s;
 	return s; 
 }
 
-
-//this click function appends a piece to a new spot on the board.
-// var movePiece = function() {
-// 	$('.space').on('click', function() {
-// 		$(this).append($currentPiece).off('click');
-// 	})	
-// }
 
 
 //this funtion will render the board to its current 
@@ -93,12 +160,6 @@ var renderBoard = function() {
 renderBoard();
 
 
-//funtion to calculate how far a player is allowed to move
-//and control where they can click
-// var moveDistance = function() {
-// 	endSpot = startSpot + diceClicked;
-// 	if()
-// }
 
 
 
@@ -108,6 +169,56 @@ renderBoard();
 
 
 
+/* ****************************************************************************
+ * 
+ * CREATE TEST SETUPS
+ * 
+ * **************************************************************************** */
+
+var setups = {};
+
+setups.blackInHomeQ = function() {
+	board = [
+
+	  /* BOTTOM */
+
+	  /* Quadrant Bottom-Right: White Home */
+	  /* Point 12, id: 1  */ [1, 1],
+	  /* Point 11, id: 2  */ [-1, -1],
+	  /* Point 10, id: 3  */ [],
+	  /* Point 09, id: 4  */ [-1, -1, -1, -1, -1], 
+	  /* Point 08, id: 5  */ [-1, -1, -1], 
+	  /* Point 07, id: 6  */ [-1, -1, -1, -1, -1],
+
+	  /* Quadrant Bottom-Left */
+	  /* Point 06, id: 7  */ [], 
+	  /* Point 05, id: 8  */ [], 
+	  /* Point 04, id: 9  */ [], 
+	  /* Point 03, id: 10 */ [], 
+	  /* Point 02, id: 11 */ [], 
+	  /* Point 01, id: 12 */ [1, 1, 1, 1, 1],
+
+	  /* TOP */
+
+	  /* Quadrant Top-Left */
+	  /* Point 01, id: 13 */ [], 
+	  /* Point 02, id: 14 */ [], 
+	  /* Point 03, id: 15 */ [], 
+	  /* Point 04, id: 16 */ [], 
+	  /* Point 05, id: 17 */ [1, 1, 1], 
+	  /* Point 06, id: 18 */ [],
+
+	  /* Quadrant Top-Right: Black Home */
+	  /* Point 07, id: 19 */ [1, 1, 1, 1, 1], 
+	  /* Point 08, id: 20 */ [], 
+	  /* Point 09, id: 21 */ [], 
+	  /* Point 10, id: 22 */ [], 
+	  /* Point 11, id: 23 */ [], 
+	  /* Point 12, id: 24 */ []
+	];
+
+	renderBoard();
+};
 
 
 

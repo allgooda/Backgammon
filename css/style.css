@@ -6,14 +6,14 @@
 #board {
 	border: 2px solid black;
 	height: 348px;
-	width: 639px;
+	width: 650px;
 	margin: 0px auto;
 	background: yellow;
 }
 
 .quadrant {
 	height: 172px;
-	width: 316px;
+	width: 320px;
 	border: 2px black solid;
 	display: inline;
 	float: left;
