@@ -10,7 +10,7 @@ var board = [
 
   /* BOTTOM */
 
-  /* Quadrant Bottom-Right: White Home */
+  /* Quadrant 1 - Bottom-Right: Black Home */
   /* Point 12, id: 1  */ [1, 1],
   /* Point 11, id: 2  */ [],
   /* Point 10, id: 3  */ [],
@@ -18,7 +18,7 @@ var board = [
   /* Point 08, id: 5  */ [], 
   /* Point 07, id: 6  */ [-1, -1, -1, -1, -1],
 
-  /* Quadrant Bottom-Left */
+  /* Quadrant 2 - Bottom-Left */
   /* Point 06, id: 7  */ [], 
   /* Point 05, id: 8  */ [-1, -1, -1], 
   /* Point 04, id: 9  */ [], 
@@ -28,7 +28,7 @@ var board = [
 
   /* TOP */
 
-  /* Quadrant Top-Left */
+  /* Quadrant 3 - Top-Left */
   /* Point 01, id: 13 */ [-1, -1, -1, -1, -1], 
   /* Point 02, id: 14 */ [], 
   /* Point 03, id: 15 */ [], 
@@ -36,7 +36,7 @@ var board = [
   /* Point 05, id: 17 */ [1, 1, 1], 
   /* Point 06, id: 18 */ [],
 
-  /* Quadrant Top-Right: Black Home */
+  /* Quadrant 4 - Top-Right: White Home */
   /* Point 07, id: 19 */ [1, 1, 1, 1, 1], 
   /* Point 08, id: 20 */ [], 
   /* Point 09, id: 21 */ [], 
@@ -44,6 +44,13 @@ var board = [
   /* Point 11, id: 23 */ [], 
   /* Point 12, id: 24 */ [-1, -1]
 ];
+
+var pointsInQuad = function(quadrant) {
+	var startPoint = (quadrant - 1) * 6;
+	var endPoint = (quadrant * 6);
+
+	return board.slice(startPoint, endPoint);
+}
 
 var bJail = [];
 var wJail = [];
@@ -110,7 +117,6 @@ $('#board').on('click', '.piece', function(event) {
 
 $('#board').on('click', '.space', function(event) {
 	if (!$currentPiece) return;
-
 	console.log(endSpot);
 	if (parseInt(event.target.id) !== endSpot) return;
 	var indx1 = parseInt($currentPiece[0].id.substr(0,2));
@@ -142,6 +148,49 @@ var pad = function(n) {
 	return s; 
 }
 
+
+//Function to check if all the pieces are in the home quadrant
+
+
+// quadrant is numbered 1 to 4, in board order
+var piecesInQuadrant = function(quadrant, player) {
+	// get just the array of points in THIS quad
+	var quadsPoints = pointsInQuad(quadrant);
+	var point,
+	    piece,
+	    total = 0;
+
+	// console.log(quadsPoints)
+
+	// iterate over the points
+	for (var i = 0; i < quadsPoints.length; i++) {
+		point = quadsPoints[i];
+
+		// for the point, iterate over the pieces
+		for (var j = 0; j < point.length; j++) {
+			piece = point[j];
+			// console.log(i,j,piece,player);
+			if (piece === player) {
+				total++;
+			}
+		};
+
+		// console.log('finished point', i)
+	};
+	return total;
+};
+
+var allInHomeQuad = function(player) {
+	if (player === -1) {
+		return (piecesInQuadrant(2, -1) === 0 &&
+		        piecesInQuadrant(3, -1) === 0 &&
+		        piecesInQuadrant(4, -1) === 0);
+	} else {
+		return (piecesInQuadrant(1, 1) === 0 &&
+			    piecesInQuadrant(2, 1) === 0 &&
+			    piecesInQuadrant(3, 1) === 0);
+	}
+}
 
 
 //this funtion will render the board to its current 
@@ -182,7 +231,7 @@ setups.blackInHomeQ = function() {
 
 	  /* BOTTOM */
 
-	  /* Quadrant Bottom-Right: White Home */
+	  /* Quadrant Bottom-Right: Black Home */
 	  /* Point 12, id: 1  */ [1, 1],
 	  /* Point 11, id: 2  */ [-1, -1],
 	  /* Point 10, id: 3  */ [],
@@ -208,7 +257,7 @@ setups.blackInHomeQ = function() {
 	  /* Point 05, id: 17 */ [1, 1, 1], 
 	  /* Point 06, id: 18 */ [],
 
-	  /* Quadrant Top-Right: Black Home */
+	  /* Quadrant Top-Right: White Home */
 	  /* Point 07, id: 19 */ [1, 1, 1, 1, 1], 
 	  /* Point 08, id: 20 */ [], 
 	  /* Point 09, id: 21 */ [], 
