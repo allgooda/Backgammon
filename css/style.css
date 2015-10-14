@@ -1,20 +1,20 @@
-
-#dice{
-	margin: 0px auto;
-
+body {
+	background: grey;
 }
-#board {
-	border: 2px solid black;
-	height: 348px;
-	width: 650px;
+
+
+#board { 
+	margin-top: 15px;
+	height: 344px;
+	width: 648px;
 	margin: 0px auto;
-	background: yellow;
+	background: grey;
 }
 
 .quadrant {
 	height: 172px;
 	width: 320px;
-	border: 2px black solid;
+	padding: 2px;
 	display: inline;
 	float: left;
 }
@@ -29,8 +29,9 @@
 
 .space {
 	width: 30px;
+	border-radius: 15%;
 	height: 150px;
-	border: 2px solid black;
+	
 	float: left;
 	margin: 8px 10px 0px 9px;
 }
@@ -51,15 +52,22 @@
 	margin: 6px 6px 6px 6px;
 }
 
+#dice {
+	text-align: center;
+	margin-right: 25px;
+}
+
 div.di {
-	float: left;
+	display: inline-block;
+	margin: 0px auto;
+	height: 32px;
 	width: 32px;
 	background: #F5F5F5;
 	border: #999 1px solid;
 	padding: 10px;
 	font-size: 24px;
 	text-align: center;
-	margin: 5px;
+	
 }
 
 .selected-piece {
@@ -68,19 +76,42 @@ div.di {
 }
 
 #home {
+	margin: -76px 20px 0px 0px;
 	float: right;
+	text-align: center;
 }
 
 #home1 {
-	width: 50px;
-	height: 50px;
-	border: 2px black solid;
+	background: black;
+	color: white;
+	text-align: center;
 }
 
 #home2 {
-	width: 50px;
-	height: 50px;
-	border: 2px black solid;
+	background: white;
+}
+
+
+.homebase {
+
+		width: 50px;
+		height: 50px;
+		border: 2px black solid;
+		margin: 20px 0px 20px 0px;
+		border-radius: 50%;
+}
+
+@media (min-width: 1260px) {
+
+	.homebase {
+		width: 50px;
+		height: 50px;
+		border: 2px black solid;
+		margin: -180px 250px 0px 0px;
+		border-radius: 50%;
+
+	}
+
 }
 
 

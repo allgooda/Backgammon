@@ -68,19 +68,6 @@ var amtOfDiceClicked = 0;
 var totalBlackPieces = 14;
 var totalWhitePieces = 14;
 
-//turn function - to change turns after a player finishes moving
-
-var changeTurn = function() {
-	playerTurn *= -1;
-	$('.whitePiece').prop('disabled', false);
-	$('.whitePiece').prop('disabled', false);
-	$('.roll').prop('disabled', false);
-	$('.di').prop("disabled", false)
-	$('.di').css('background', '#F5F5F5');
-	diceClicked = 0;
-	amtOfDiceClicked = 0;
-}
-
 //This click function rolls dice and assigns the two values
 //to variables d1 and d2
 //It also prints the randomized # to my simulation dice divs.
@@ -117,6 +104,19 @@ $('#board').on('click', '.piece', function(event) {
 
 	console.log(event.target.id);
 });
+
+
+//turn function - to change turns after a player finishes moving
+var changeTurn = function() {
+	playerTurn *= -1;
+	$('.whitePiece').prop('disabled', false);
+	$('.whitePiece').prop('disabled', false);
+	$('.roll').prop('disabled', false);
+	$('.di').prop("disabled", false)
+	$('.di').css('background', '#F5F5F5');
+	diceClicked = 0;
+	amtOfDiceClicked = 0;
+}
 
 
 //this function allows players to move their pieces in opposite directions
@@ -277,7 +277,6 @@ $('#board').on('click', '.space', function(event) {
 	console.log(indx1);
 
 	var piece = board[indx1].splice(indx2, 1);
-
 
 	board[event.target.id - 1].push(piece[0]);
 
