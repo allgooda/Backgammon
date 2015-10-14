@@ -92,7 +92,7 @@ $('.roll').on('click', function(){
 	die2.innerHTML = d2;
 	$(this).prop("disabled", true);
 });
-
+ 
 //This click function attains the id of the parent div
 //so that i can reference a function containing a switch statement
 //in order to assign a starting position for when a player makes
@@ -105,9 +105,20 @@ $('#board').on('click', '.piece', function(event) {
 	$currentPiece.addClass('selected-piece');
 	// movePiece();
 	startSpot = parseInt($(this).parent().attr('id'));
-	endSpot = diceClicked + startSpot;
+	endSpot = pieceMovement(diceClicked, startSpot, playerTurn);
 	console.log(event.target.id);
 });
+
+var pieceMovement = function(diceClicked, startSpot, playerTurn) {
+	var endSpace = 0;
+	if (playerTurn === -1) {
+		endSpace = startSpot - diceClicked;
+	}
+	else {
+		endSpace = diceClicked + startSpot
+	}
+	return endSpace
+}
 
 $('#board').on('click', '.space', function(event) {
 	if (!$currentPiece) return;
@@ -160,10 +171,12 @@ var pad = function(n) {
 }
 
 
-//Function to check if all the pieces are in the home quadrant
+
 
 
 // quadrant is numbered 1 to 4, in board order
+//this funtion gives the amount of pieces in a given quadrant
+//depencing on the player
 var piecesInQuadrant = function(quadrant, player) {
 	// get just the array of points in THIS quad
 	var quadsPoints = pointsInQuad(quadrant);
@@ -192,6 +205,9 @@ var piecesInQuadrant = function(quadrant, player) {
 };
 
 
+
+//this function tests to see if  all of a players 
+//pieces are in their home quadrant.
 var allInHomeQuad = function(player) {
 	if (player === -1) {
 		return (piecesInQuadrant(2, -1) === 0 &&
@@ -203,11 +219,6 @@ var allInHomeQuad = function(player) {
 			    piecesInQuadrant(3, 1) === 0);
 	}
 }
-
-
-
-
-
 
 //this funtion will render the board to its current 
 //based on previous moves
