@@ -56,7 +56,7 @@ var bJail = [];
 var wJail = [];
 var wHome = [];
 
-var currentBoard = [];
+
 var d1;
 var d2;
 var diceClicked;
@@ -66,6 +66,7 @@ var $currentPiece = null;
 var playerTurn = -1;
 var amtOfDiceClicked = 0;
 var totalBlackPieces = 0;
+var totalWhitePieces = 0;
 
 //turn function - to change turns after a player finishes moving
 
@@ -84,7 +85,7 @@ var changeTurn = function() {
 //to variables d1 and d2
 //It also prints the randomized # to my simulation dice divs.
 $('.roll').on('click', function(){
-	currentBoard = board;
+	
 	var die1 = document.getElementById('die1');
 	var die2 = document.getElementById('die2');
 	d1 = Math.floor(Math.random() * 6) + 1;
@@ -100,7 +101,8 @@ $('.roll').on('click', function(){
 //moves
 $('#board').on('click', '.piece', function(event) {
 	var pieceClass = ($(this).attr('class'));
-
+	
+	console.log('hi');
 	if(!onlyClickMyPieces(pieceClass)) return;
 
 	if ($currentPiece) $currentPiece.removeClass('selected-piece');
@@ -147,14 +149,44 @@ var goingHome = function(playerTurn) {
 			renderBoard();	
 		}
 	}
+	else {
+		var wHome = [];
+		if(endSpot >= 25) {
+			var indx1 = parseInt($currentPiece[0].id.substr(0,2));
+			var indx2 = parseInt($currentPiece[0].id.substr(2,2));
+			console.log(indx1);
+			var piece = board[indx1].splice(indx2, 1);
+			wHome.push(piece[0]);
+			console.log(wHome);
+			renderWhiteHome(wHome.length);
+			renderBoard();	
+		}
+	}
 }
 
+//ADD A COUNTER TO BLACK HOME WHEN PLAYER GETS PIECES INSIDE
 var renderBlackHome = function(length) {
 	for(var i = 0; i < length; i++) {
 		totalBlackPieces += 1;
 		$('#home1').text(totalBlackPieces);
+		if(amtOfDiceClicked === 2) { 
+		changeTurn();
+	}
 	}
 }
+
+//ADD A COUNTER TO WHITE HOME WHEN PLAYER GETS PIECES INSIDE
+var renderWhiteHome = function(length) {
+	for(var i = 0; i < length; i++) {
+		totalWhitePieces += 1;
+		$('#home2').text(totalWhitePieces);
+		if(amtOfDiceClicked === 2) { 
+		changeTurn();
+	}
+	}
+}
+
+
 
 $('#board').on('click', '.space', function(event) {
 	if (!$currentPiece) return;
@@ -183,9 +215,9 @@ $('#board').on('click', '.space', function(event) {
 
 
 //THIS FUNCTION IS TO CHECK IF A PLAYER HAS MADE TWO MOVES
-var checkMovement = fucntion() {
-	if (currentBoard !== board)
-}
+// var checkMovement = fucntion() {
+// 	if (currentBoard !== board)
+// }
 
 //function where i click a die and recieve the value
 
@@ -306,7 +338,7 @@ var setups = {};
 
 setups.blackInHomeQ = function() {
 	board = [
-	   [1, 1],
+	   [],
 	   [-1, -1, -1, -1],
 	   [],
 	   [-1, -1, -1, -1, -1], 
@@ -318,21 +350,21 @@ setups.blackInHomeQ = function() {
 	   [], 
 	   [], 
 	   [], 
-	   [1, 1, 1, 1, 1],
+	   [],
 	  
 	   [], 
 	   [], 
 	   [], 
 	   [], 
-	   [1, 1, 1], 
+	   [], 
 	   [],
 
 	   [1, 1, 1, 1, 1], 
 	   [], 
 	   [], 
-	   [], 
-	   [], 
-	   []
+	   [1, 1], 
+	   [1, 1, 1], 
+	   [1, 1, 1, 1, 1]
 	];
 
 	renderBoard();

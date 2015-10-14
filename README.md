@@ -7,7 +7,7 @@
 - [x] As a player, I can not move pieces off of the board unless they are all in my home quadrant.
 - [x] As a player, i cannot click my opponents peices when it is my turn.
 - [x] As a player, I need to be able to move my pieces in the opposite direction of my opponent.
-- [ ] As a player, when I move all my pieces to my home quadrant, then I can move them off the board.
+- [x] As a player, when I move all my pieces to my home quadrant, then I can move them off the board.
 - [ ] As a player, I cannot move onto a space with two or more of my opponents pieces.
 - [ ] As a player, when I move all of my pieces off of the board, the game is over and I am the winner.
 - [ ] As a player, if I have not selected a di, I should not be able to move a piece
