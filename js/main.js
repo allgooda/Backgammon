@@ -326,8 +326,10 @@ var checkSpaceAvailable = function(spaceAvailable, playerTurn) {
 	}
 }
 
-var sendOpponentToJail = function(spaceAvailable, playerTurn) {
 
+//this function sends a piece to the jail if it is alone on a space
+//and the opposite color.
+var sendOpponentToJail = function(spaceAvailable, playerTurn) {
 	if(board[spaceAvailable].length === 1 && board[spaceAvailable][0] !== playerTurn) {
 		var jailPiece = board[spaceAvailable].pop();
 		console.log(jailPiece);
@@ -337,6 +339,19 @@ var sendOpponentToJail = function(spaceAvailable, playerTurn) {
 		else {
 			wJail.push(jailPiece);
 		}
+	}
+}
+
+//this function renders the amount of values of bJail or wJail
+//to the jail divs on the board.
+var renderJail = function(bJail, wJail) {
+	
+	for (var i = 0; i < wJail.length; i++) {
+		$('#jail2').html(i + 1);
+	}
+
+	for (var i = 0; i < bJail.length; i++) {
+		$('#jail1').html(i + 1);
 	}
 }
 
@@ -364,6 +379,8 @@ $('#board').on('click', '.space', function(event) {
 	//need to call a function to see if there is only one piece of the other
 	//player on the space, and if so send piece to the jail.
 	sendOpponentToJail(spaceAvailable, playerTurn);
+	//will call a function to render my jail with a number
+	renderJail(bJail, wJail);
 
 
 	board[spaceAvailable].push(piece[0]);
