@@ -54,10 +54,9 @@ var pointsInQuad = function(quadrant) {
 
 var bJail = [];
 var wJail = [];
-var bHome = [];
 var wHome = [];
 
-
+var currentBoard = [];
 var d1;
 var d2;
 var diceClicked;
@@ -66,6 +65,7 @@ var endSpot = 0;
 var $currentPiece = null;
 var playerTurn = -1;
 var amtOfDiceClicked = 0;
+var totalBlackPieces = 0;
 
 //turn function - to change turns after a player finishes moving
 
@@ -73,7 +73,7 @@ var changeTurn = function() {
 	playerTurn *= -1;
 	$('.whitePiece').prop('disabled', false);
 	$('.whitePiece').prop('disabled', false);
-	$('.roll').prop("disabled", false);
+	$('.roll').prop('disabled', false);
 	$('.di').prop("disabled", false)
 	$('.di').css('background', '#F5F5F5');
 	diceClicked = 0;
@@ -84,6 +84,7 @@ var changeTurn = function() {
 //to variables d1 and d2
 //It also prints the randomized # to my simulation dice divs.
 $('.roll').on('click', function(){
+	currentBoard = board;
 	var die1 = document.getElementById('die1');
 	var die2 = document.getElementById('die2');
 	d1 = Math.floor(Math.random() * 6) + 1;
@@ -99,15 +100,19 @@ $('.roll').on('click', function(){
 //moves
 $('#board').on('click', '.piece', function(event) {
 	var pieceClass = ($(this).attr('class'));
+
 	if(!onlyClickMyPieces(pieceClass)) return;
+
 	if ($currentPiece) $currentPiece.removeClass('selected-piece');
+
 	$currentPiece = $(this);
 	$currentPiece.addClass('selected-piece');
-	// movePiece();
+	
 	startSpot = parseInt($(this).parent().attr('id'));
 	endSpot = pieceMovement(diceClicked, startSpot, playerTurn);
 
 	if(allInHomeQuad(playerTurn)) goingHome(playerTurn);
+
 	console.log(event.target.id);
 });
 
@@ -130,44 +135,57 @@ var pieceMovement = function(diceClicked, startSpot, playerTurn) {
 
 var goingHome = function(playerTurn) {
 	if (playerTurn === -1) {
+		var bHome = [];
 		if(endSpot <= 0) {
 			var indx1 = parseInt($currentPiece[0].id.substr(0,2));
 			var indx2 = parseInt($currentPiece[0].id.substr(2,2));
 			console.log(indx1);
 			var piece = board[indx1].splice(indx2, 1);
-			console.log(piece);
 			bHome.push(piece[0]);
-			renderBoard();
+			console.log(bHome);
 			renderBlackHome(bHome.length);
+			renderBoard();	
 		}
-	goingHome(playerTurn);
 	}
 }
 
 var renderBlackHome = function(length) {
 	for(var i = 0; i < length; i++) {
-		var totalBlackPieces = 0;
 		totalBlackPieces += 1;
 		$('#home1').text(totalBlackPieces);
-		console.log(totalBlackPieces);
 	}
 }
 
 $('#board').on('click', '.space', function(event) {
 	if (!$currentPiece) return;
+
 	console.log(endSpot);
+
 	if (parseInt(event.target.id) !== endSpot) return;
+
 	var indx1 = parseInt($currentPiece[0].id.substr(0,2));
 	var indx2 = parseInt($currentPiece[0].id.substr(2,2));
+
 	console.log(indx1);
+
 	var piece = board[indx1].splice(indx2, 1);
-	console.log(piece);
+
+
 	board[event.target.id - 1].push(piece[0]);
+
 	renderBoard();
+
 	if(amtOfDiceClicked === 2) { 
 		changeTurn();
 	}
 });
+
+
+
+//THIS FUNCTION IS TO CHECK IF A PLAYER HAS MADE TWO MOVES
+var checkMovement = fucntion() {
+	if (currentBoard !== board)
+}
 
 //function where i click a die and recieve the value
 
@@ -289,11 +307,11 @@ var setups = {};
 setups.blackInHomeQ = function() {
 	board = [
 	   [1, 1],
-	   [-1, -1],
+	   [-1, -1, -1, -1],
 	   [],
 	   [-1, -1, -1, -1, -1], 
 	   [-1, -1, -1], 
-	   [-1, -1, -1, -1, -1],
+	   [-1, -1, -1,],
 
 	   [], 
 	   [], 

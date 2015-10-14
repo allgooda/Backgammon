@@ -12,7 +12,6 @@
 - [ ] As a player, when I move all of my pieces off of the board, the game is over and I am the winner.
 - [ ] As a player, if I have not selected a di, I should not be able to move a piece
 ### MVP
-- [ ] As a player, in order to start the game, I need a way to decide who goes first.
 - [ ] As a player sometimes I move a piece but then change my mind. I would like a way to reset if i have not finished a move.
 - [ ] As a player, when I land on another player’s single piece, the piece should go to the jail.
 - [ ] As a player, if I roll a specific #, I should be able to bring my piece back if it has been eliminated by another player.	
@@ -25,6 +24,7 @@
 
 
 ### Icebox
+- [ ] As a player, in order to start the game, I need a way to decide who goes first.
 - [ ] As a player, i would like a way to keep track of who’s turn it is.
 - [ ] As a player I would like a way to enter my Name.
 - [ ] As a player When I roll the dice, if i roll doubles (two sixes), my move should count for double (4 sixes).
