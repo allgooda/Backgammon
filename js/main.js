@@ -250,17 +250,12 @@ var onlyClickMyPieces = function(piece) {
 	}
 }
 
-
 //gives me the location of a piece in the board array
 var pad = function(n) {
 	var s = n.toString();
 	s = s.length === 1 ? '0' + s : s;
 	return s; 
 }
-
-
-
-
 
 // quadrant is numbered 1 to 4, in board order
 //this funtion gives the amount of pieces in a given quadrant
@@ -331,6 +326,20 @@ var checkSpaceAvailable = function(spaceAvailable, playerTurn) {
 	}
 }
 
+var sendOpponentToJail = function(spaceAvailable, playerTurn) {
+
+	if(board[spaceAvailable].length === 1 && board[spaceAvailable][0] !== playerTurn) {
+		var jailPiece = board[spaceAvailable].pop();
+		console.log(jailPiece);
+		if(jailPiece === -1) {
+			bJail.push(jailPiece);
+		}
+		else {
+			wJail.push(jailPiece);
+		}
+	}
+}
+
 $('#board').on('click', '.space', function(event) {
 	if (!$currentPiece) return;
 
@@ -351,6 +360,12 @@ $('#board').on('click', '.space', function(event) {
 	//check if the space cliced is take by two or more of the other players pieces
 	//if true end click event function
 	if(checkSpaceAvailable(spaceAvailable, playerTurn) === true) return;
+
+	//need to call a function to see if there is only one piece of the other
+	//player on the space, and if so send piece to the jail.
+	sendOpponentToJail(spaceAvailable, playerTurn);
+
+
 	board[spaceAvailable].push(piece[0]);
 
 	renderBoard();
@@ -424,26 +439,26 @@ setups.blackInHomeQ = function() {
 	   [], 
 	   [],
 
-	   [], 
-	   [], 
-	   [], 
-	   [], 
-	   [], 
-	   [],
+	   [-1], 
+	   [1], 
+	   [-1], 
+	   [1], 
+	   [-1], 
+	   [1],
 	  
+	   [-1], 
+	   [1], 
 	   [], 
+	   [-1], 
 	   [], 
-	   [], 
-	   [], 
-	   [], 
-	   [],
+	   [1],
 
 	   [], 
+	   [-1], 
 	   [], 
+	   [1], 
 	   [], 
-	   [], 
-	   [], 
-	   [1]
+	   [-1]
 	];
 
 	renderBoard();

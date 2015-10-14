@@ -2,6 +2,13 @@ body {
 	background: grey;
 }
 
+.bothjail {
+	width: 50px;
+	height: 50px;
+	border: 2px black solid;
+	border-radius: 50%;
+	background: white;
+}
 
 #board { 
 	margin-top: 15px;
@@ -93,12 +100,11 @@ div.di {
 
 
 .homebase {
-
-		width: 50px;
-		height: 50px;
-		border: 2px black solid;
-		margin: 20px 0px 20px 0px;
-		border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	border: 2px black solid;
+	margin: 20px 0px 20px 0px;
+	border-radius: 50%;	
 }
 
 @media (min-width: 1260px) {
