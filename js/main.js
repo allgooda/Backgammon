@@ -65,8 +65,8 @@ var endSpot = 0;
 var $currentPiece = null;
 var playerTurn = -1;
 var amtOfDiceClicked = 0;
-var totalBlackPieces = 0;
-var totalWhitePieces = 0;
+var totalBlackPieces = 14;
+var totalWhitePieces = 14;
 
 //turn function - to change turns after a player finishes moving
 
@@ -169,9 +169,15 @@ var renderBlackHome = function(length) {
 	for(var i = 0; i < length; i++) {
 		totalBlackPieces += 1;
 		$('#home1').text(totalBlackPieces);
+		if(winnerCheck()) {
+				boardReset();
+				alertWinnerBlack();
+
+			} 
 		if(amtOfDiceClicked === 2) { 
+			
 		changeTurn();
-	}
+		}
 	}
 }
 
@@ -180,12 +186,82 @@ var renderWhiteHome = function(length) {
 	for(var i = 0; i < length; i++) {
 		totalWhitePieces += 1;
 		$('#home2').text(totalWhitePieces);
-		if(amtOfDiceClicked === 2) { 
+		if(winnerCheck()) {
+				alertWinnerWhite();
+				boardReset();
+			} 
+		if(amtOfDiceClicked === 2) {
 		changeTurn();
-	}
+		}
 	}
 }
 
+
+//THIS FUNCTION CHECKS FOR A WINNER!!
+var winnerCheck = function() {
+	if (playerTurn === -1) {
+		return (totalBlackPieces === 15);
+	} else {
+		return (totalWhitePieces === 15);
+	}
+}
+
+
+//THIS FUNCTION ALERTS WHITE IF THEY ARE A WINNER HAHA
+var alertWinnerWhite = function() {
+	alert('WHITE WINS!!!')
+
+}
+
+//THIS FUNCTION ALERTS BLACK IF THEY ARE A WINNER HAHA
+var alertWinnerBlack = function() {
+	alert('BLACK WINS!!!');
+}
+
+//THIS FUNCTION RESETS THE BOARD WHEN THE GAME IS OVER LOL!
+var boardReset = function() {
+	console.log('reset!!')
+	board = [
+
+  /* BOTTOM */
+
+  /* Quadrant 1 - Bottom-Right: Black Home */
+  /* Point 12, id: 1  */ [1, 1],
+  /* Point 11, id: 2  */ [],
+  /* Point 10, id: 3  */ [],
+  /* Point 09, id: 4  */ [], 
+  /* Point 08, id: 5  */ [], 
+  /* Point 07, id: 6  */ [-1, -1, -1, -1, -1],
+
+  /* Quadrant 2 - Bottom-Left */
+  /* Point 06, id: 7  */ [], 
+  /* Point 05, id: 8  */ [-1, -1, -1], 
+  /* Point 04, id: 9  */ [], 
+  /* Point 03, id: 10 */ [], 
+  /* Point 02, id: 11 */ [], 
+  /* Point 01, id: 12 */ [1, 1, 1, 1, 1],
+
+  /* TOP */
+
+  /* Quadrant 3 - Top-Left */
+  /* Point 01, id: 13 */ [-1, -1, -1, -1, -1], 
+  /* Point 02, id: 14 */ [], 
+  /* Point 03, id: 15 */ [], 
+  /* Point 04, id: 16 */ [], 
+  /* Point 05, id: 17 */ [1, 1, 1], 
+  /* Point 06, id: 18 */ [],
+
+  /* Quadrant 4 - Top-Right: White Home */
+  /* Point 07, id: 19 */ [1, 1, 1, 1, 1], 
+  /* Point 08, id: 20 */ [], 
+  /* Point 09, id: 21 */ [], 
+  /* Point 10, id: 22 */ [], 
+  /* Point 11, id: 23 */ [], 
+  /* Point 12, id: 24 */ [-1, -1]
+];
+
+renderBoard();
+}
 
 
 $('#board').on('click', '.space', function(event) {
@@ -214,10 +290,7 @@ $('#board').on('click', '.space', function(event) {
 
 
 
-//THIS FUNCTION IS TO CHECK IF A PLAYER HAS MADE TWO MOVES
-// var checkMovement = fucntion() {
-// 	if (currentBoard !== board)
-// }
+
 
 //function where i click a die and recieve the value
 
@@ -338,12 +411,12 @@ var setups = {};
 
 setups.blackInHomeQ = function() {
 	board = [
+	   [-1],
 	   [],
-	   [-1, -1, -1, -1],
 	   [],
-	   [-1, -1, -1, -1, -1], 
-	   [-1, -1, -1], 
-	   [-1, -1, -1,],
+	   [], 
+	   [], 
+	   [],
 
 	   [], 
 	   [], 
@@ -359,12 +432,12 @@ setups.blackInHomeQ = function() {
 	   [], 
 	   [],
 
-	   [1, 1, 1, 1, 1], 
 	   [], 
 	   [], 
-	   [1, 1], 
-	   [1, 1, 1], 
-	   [1, 1, 1, 1, 1]
+	   [], 
+	   [], 
+	   [], 
+	   [1]
 	];
 
 	renderBoard();
