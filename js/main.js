@@ -107,7 +107,7 @@ $('#board').on('click', '.piece', function(event) {
 	startSpot = parseInt($(this).parent().attr('id'));
 	endSpot = pieceMovement(diceClicked, startSpot, playerTurn);
 
-	if(allInHomeQuad(playerTurn)) 
+	if(allInHomeQuad(playerTurn)) goingHome(playerTurn);
 	console.log(event.target.id);
 });
 
@@ -133,7 +133,23 @@ var goingHome = function(playerTurn) {
 		if(endSpot <= 0) {
 			var indx1 = parseInt($currentPiece[0].id.substr(0,2));
 			var indx2 = parseInt($currentPiece[0].id.substr(2,2));
+			console.log(indx1);
+			var piece = board[indx1].splice(indx2, 1);
+			console.log(piece);
+			bHome.push(piece[0]);
+			renderBoard();
+			renderBlackHome(bHome.length);
 		}
+	goingHome(playerTurn);
+	}
+}
+
+var renderBlackHome = function(length) {
+	for(var i = 0; i < length; i++) {
+		var totalBlackPieces = 0;
+		totalBlackPieces += 1;
+		$('#home1').text(totalBlackPieces);
+		console.log(totalBlackPieces);
 	}
 }
 
@@ -267,7 +283,7 @@ renderBoard();
  * CREATE TEST SETUPS
  * 
  * **************************************************************************** */
-/*
+
 var setups = {};
 
 setups.blackInHomeQ = function() {
@@ -304,5 +320,5 @@ setups.blackInHomeQ = function() {
 	renderBoard();
 };
 
-*/
+
 
