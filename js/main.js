@@ -106,9 +106,14 @@ $('#board').on('click', '.piece', function(event) {
 	// movePiece();
 	startSpot = parseInt($(this).parent().attr('id'));
 	endSpot = pieceMovement(diceClicked, startSpot, playerTurn);
+
+	if(allInHomeQuad(playerTurn)) 
 	console.log(event.target.id);
 });
 
+
+//this function allows players to move their pieces in opposite directions
+// on the board depending on whose turn it is
 var pieceMovement = function(diceClicked, startSpot, playerTurn) {
 	var endSpace = 0;
 	if (playerTurn === -1) {
@@ -118,6 +123,18 @@ var pieceMovement = function(diceClicked, startSpot, playerTurn) {
 		endSpace = diceClicked + startSpot
 	}
 	return endSpace
+}
+
+//this funtion allows a player to begin moving their pieces into the home div if
+//all of their pieces are in their home quadrant
+
+var goingHome = function(playerTurn) {
+	if (playerTurn === -1) {
+		if(endSpot <= 0) {
+			var indx1 = parseInt($currentPiece[0].id.substr(0,2));
+			var indx2 = parseInt($currentPiece[0].id.substr(2,2));
+		}
+	}
 }
 
 $('#board').on('click', '.space', function(event) {
