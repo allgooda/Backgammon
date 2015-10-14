@@ -13,7 +13,7 @@
 
 
 ### Current
-- [ ] As a player, I cannot move onto a space with two or more of my opponents pieces.
+- [x] As a player, I cannot move onto a space with two or more of my opponents pieces.
 - [ ] As a player, when I win the board should reset.	
 - [ ] As a player, if I have not selected a di, I should not be able to move a piece
 ### MVP

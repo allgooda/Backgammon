@@ -65,45 +65,13 @@ var endSpot = 0;
 var $currentPiece = null;
 var playerTurn = -1;
 var amtOfDiceClicked = 0;
-var totalBlackPieces = 14;
-var totalWhitePieces = 14;
+var totalBlackPieces = 0;
+var totalWhitePieces = 0;
 
-//This click function rolls dice and assigns the two values
-//to variables d1 and d2
-//It also prints the randomized # to my simulation dice divs.
-$('.roll').on('click', function(){
-	
-	var die1 = document.getElementById('die1');
-	var die2 = document.getElementById('die2');
-	d1 = Math.floor(Math.random() * 6) + 1;
-	d2 = Math.floor(Math.random() * 6) + 1;
-	die1.innerHTML = d1;
-	die2.innerHTML = d2;
-	$(this).prop("disabled", true);
-});
- 
-//This click function attains the id of the parent div
-//so that i can reference a function containing a switch statement
-//in order to assign a starting position for when a player makes
-//moves
-$('#board').on('click', '.piece', function(event) {
-	var pieceClass = ($(this).attr('class'));
-	
-	console.log('hi');
-	if(!onlyClickMyPieces(pieceClass)) return;
+//this function checks if a space is already taken by two or more of the other 
+//players pieces
 
-	if ($currentPiece) $currentPiece.removeClass('selected-piece');
 
-	$currentPiece = $(this);
-	$currentPiece.addClass('selected-piece');
-	
-	startSpot = parseInt($(this).parent().attr('id'));
-	endSpot = pieceMovement(diceClicked, startSpot, playerTurn);
-
-	if(allInHomeQuad(playerTurn)) goingHome(playerTurn);
-
-	console.log(event.target.id);
-});
 
 
 //turn function - to change turns after a player finishes moving
@@ -170,12 +138,13 @@ var renderBlackHome = function(length) {
 		totalBlackPieces += 1;
 		$('#home1').text(totalBlackPieces);
 		if(winnerCheck()) {
-				boardReset();
 				alertWinnerBlack();
-
+				changeTurn();
+				boardReset();
+				totalBlackPieces = 0;
+				totalWhitePieces = 0;
 			} 
-		if(amtOfDiceClicked === 2) { 
-			
+		if(amtOfDiceClicked === 2) { 	
 		changeTurn();
 		}
 	}
@@ -189,6 +158,9 @@ var renderWhiteHome = function(length) {
 		if(winnerCheck()) {
 				alertWinnerWhite();
 				boardReset();
+				changeTurn();
+				totalBlackPieces = 0;
+	 			totalWhitePieces = 0;
 			} 
 		if(amtOfDiceClicked === 2) {
 		changeTurn();
@@ -262,45 +234,6 @@ var boardReset = function() {
 
 renderBoard();
 }
-
-
-$('#board').on('click', '.space', function(event) {
-	if (!$currentPiece) return;
-
-	console.log(endSpot);
-
-	if (parseInt(event.target.id) !== endSpot) return;
-
-	var indx1 = parseInt($currentPiece[0].id.substr(0,2));
-	var indx2 = parseInt($currentPiece[0].id.substr(2,2));
-
-	console.log(indx1);
-
-	var piece = board[indx1].splice(indx2, 1);
-
-	board[event.target.id - 1].push(piece[0]);
-
-	renderBoard();
-
-	if(amtOfDiceClicked === 2) { 
-		changeTurn();
-	}
-});
-
-
-
-
-
-//function where i click a die and recieve the value
-
-$('#dice').on('click', '.di', function(event) {
-	diceClicked = parseInt($(event.target).html());
-	$(this).css('background', 'red');
-	$(this).prop('disabled', true);
-	amtOfDiceClicked += 1;
-	console.log('clicked!')
-});
-
 
 //function to make sure the current player
 //can only click their pieces
@@ -391,13 +324,87 @@ var renderBoard = function() {
 renderBoard();
 
 
+var checkSpaceAvailable = function(spaceAvailable, playerTurn) {
+	console.log(spaceAvailable);
+	if(board[spaceAvailable].length >= 2 && board[spaceAvailable][0] != playerTurn) {
+			return true;
+	}
+}
 
+$('#board').on('click', '.space', function(event) {
+	if (!$currentPiece) return;
 
+	console.log(endSpot);
 
+	if (parseInt(event.target.id) !== endSpot) return;
 
+	var indx1 = parseInt($currentPiece[0].id.substr(0,2));
+	var indx2 = parseInt($currentPiece[0].id.substr(2,2));
 
+	console.log(indx1);
+	console.log(indx2);
 
+	var piece = board[indx1].splice(indx2, 1);
 
+	var spaceAvailable = event.target.id - 1;
+
+	//check if the space cliced is take by two or more of the other players pieces
+	//if true end click event function
+	if(checkSpaceAvailable(spaceAvailable, playerTurn) === true) return;
+	board[spaceAvailable].push(piece[0]);
+
+	renderBoard();
+
+	if(amtOfDiceClicked === 2) { 
+		changeTurn();
+	}
+});
+
+//This click function rolls dice and assigns the two values
+//to variables d1 and d2
+//It also prints the randomized # to my simulation dice divs.
+$('.roll').on('click', function(){
+	var die1 = document.getElementById('die1');
+	var die2 = document.getElementById('die2');
+	d1 = Math.floor(Math.random() * 6) + 1;
+	d2 = Math.floor(Math.random() * 6) + 1;
+	die1.innerHTML = d1;
+	die2.innerHTML = d2;
+	$(this).prop("disabled", true);
+});
+
+//function where i click a die and recieve the value
+$('#dice').on('click', '.di', function(event) {
+	diceClicked = parseInt($(event.target).html());
+	$(this).css('background', 'red');
+	$(this).prop('disabled', true);
+	amtOfDiceClicked += 1;
+	console.log('clicked!')
+});
+ 
+//This click function attains the id of the parent div
+//so that i can reference a function containing a switch statement
+//in order to assign a starting position for when a player makes
+//moves
+$('#board').on('click', '.piece', function(event) {
+	if(amtOfDiceClicked === 0) return;
+	var pieceClass = ($(this).attr('class'));
+	
+	console.log('hi');
+	if(!onlyClickMyPieces(pieceClass)) return;
+
+	if ($currentPiece) $currentPiece.removeClass('selected-piece');
+
+	$currentPiece = $(this);
+	$currentPiece.addClass('selected-piece');
+	
+	startSpot = parseInt($(this).parent().attr('id'));
+	endSpot = pieceMovement(diceClicked, startSpot, playerTurn);
+
+	if(allInHomeQuad(playerTurn)) goingHome(playerTurn);
+
+	console.log(event.target.id);
+});
 
 
 /* ****************************************************************************
