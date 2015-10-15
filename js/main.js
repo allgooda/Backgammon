@@ -68,6 +68,7 @@ var amtOfDiceClicked = 0;
 var totalBlackPieces = 0;
 var totalWhitePieces = 0;
 var escape;
+var escapeB;
 
 //this function checks if a space is already taken by two or more of the other 
 //players pieces
@@ -404,21 +405,41 @@ $('#board').on('click', '.space', function(event) {
 });
 
 
-//checks dice values to home board for black
-
+//checks dice values to home board for white
+//to see if they are eligible to escape jail
 var checkForEscapeWhite = function(d1, d2, playerTurn) {
 	var possibleMoves = [];
 	if(board[d1 - 1].length < 2 && board[d1-1][0] !== playerTurn) {
-		possibleMoves.push(d1 - 1)
+		possibleMoves.push(d1 - 1);
 	}
 	if(board[d1 - 1][0] === playerTurn){
-		possibleMoves.push(d1 - 1)
+		possibleMoves.push(d1 - 1);
 	}
-	if(board[d2 - 1].length < 2 && board[d1-1][0] !== playerTurn) {
-		possibleMoves.push(d2 - 1)
+	if(board[d2 - 1].length < 2 && board[d2 - 1][0] !== playerTurn) {
+		possibleMoves.push(d2 - 1);
 	}
 	if(board[d2 - 1][0] === playerTurn){
-		possibleMoves.push(d2 - 1)
+		possibleMoves.push(d2 - 1);
+	}
+	console.log(possibleMoves);
+	return possibleMoves;
+}
+
+//checks dice values to home board for black
+//to see if they are eligible to escape jail
+var checkForEscapeBlack = function(d1, d2, playerTurn) {
+	var possibleMoves = [];
+	if(board[24 - d1].length < 2 && board[24 - d1][0] !== playerTurn) {
+		possibleMoves.push(24 - d1);
+	}
+	if(board[24 - d1][0] === playerTurn){
+		possibleMoves.push(24 - d1);
+	}
+	if(board[24 - d2].length < 2 && board[24 - d2][0] !== playerTurn) {
+		possibleMoves.push(24 - d2);
+	}
+	if(board[24 - d2][0] === playerTurn){
+		possibleMoves.push(24 - d2);
 	}
 	console.log(possibleMoves);
 	return possibleMoves;
@@ -437,10 +458,19 @@ $('.roll').on('click', function(){
 	die2.innerHTML = d2;
 	$(this).prop("disabled", true);
 	
-	if (bJail.length > 0 && playerTurn === -1);
+	if (bJail.length > 0 && playerTurn === -1) {
+		escapeB = checkForEscapeBlack(d1, d2, playerTurn);
+		if(escapeB.length === 0) {
+			alert('No possible Moves! White Turn.');
+			changeTurn
+		}
+		else if (escapeB.length >= 1) {
+			return;
+		}
+	}
 	if (wJail.length > 0 && playerTurn === 1) {
 		escape = checkForEscapeWhite(d1, d2, playerTurn);
-		if (escape.length === 0) {
+		if(escape.length === 0) {
 			alert('No possible Moves! Black Turn.');
 			changeTurn();
 		}
@@ -455,11 +485,23 @@ $('.roll').on('click', function(){
 $('#dice').on('click', '.di', function(event) {
 	diceClicked = parseInt($(event.target).html());
 	for (var i = 0; i < escape.length; i++) {
-		if(diceClicked - 1 === escape[i]){
+		if(diceClicked - 1 === escape[i] && playerTurn === 1) {
 			var free = wJail.pop();
 			board[diceClicked - 1].push(free);
 			renderBoard();
 			renderJail(bJail, wJail);
+			if (diceClicked === 2) {
+				changeTurn();
+			}
+		}
+		else if(24 - diceClicked === escape[i] && playerTurn === -1) {
+			var freeB = bJail.pop();
+			board[24 - diceClicked].push(freeB);
+			renderBoard();
+			renderJail(bJail, wJail);
+			if (diceClicked === 2) {
+				changeTurn();
+			}
 		}
 	}
 	$(this).css('background', 'red');
@@ -467,11 +509,6 @@ $('#dice').on('click', '.di', function(event) {
 	amtOfDiceClicked += 1;
 	console.log('clicked!')
 });
-
-
-
-
-
  
 //This click function attains the id of the parent div
 //so that i can reference a function containing a switch statement
