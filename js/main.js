@@ -449,7 +449,14 @@ $('.roll').on('click', function(){
 //function where i click a die and recieve the value
 $('#dice').on('click', '.di', function(event) {
 	diceClicked = parseInt($(event.target).html());
-	for (var i = 0; i < escape) {}
+	for (var i = 0; i < escape.length; i++) {
+		if(diceClicked - 1 === escape[i]){
+			var free = wJail.pop();
+			board[diceClicked - 1].push(free);
+			renderBoard();
+			renderJail(bJail, wJail);
+		}
+	}
 	$(this).css('background', 'red');
 	$(this).prop('disabled', true);
 	amtOfDiceClicked += 1;
