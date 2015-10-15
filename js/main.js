@@ -346,7 +346,12 @@ var sendOpponentToJail = function(spaceAvailable, playerTurn) {
 //this function renders the amount of values of bJail or wJail
 //to the jail divs on the board.
 var renderJail = function(bJail, wJail) {
-	
+	if(bJail.length === 0) {
+		$('#jail1').empty();
+	}
+	if(wJail.length === 0) {
+		$('#jail2').empty();	
+		}
 	for (var i = 0; i < wJail.length; i++) {
 		$('#jail2').html(i + 1);
 	}
