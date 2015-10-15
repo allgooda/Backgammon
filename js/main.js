@@ -334,7 +334,9 @@ var checkSpaceAvailable = function(spaceAvailable, playerTurn) {
 //this function sends a piece to the jail if it is alone on a space
 //and the opposite color.
 var sendOpponentToJail = function(spaceAvailable, playerTurn) {
+	console.log(spaceAvailable);
 	if(board[spaceAvailable].length === 1 && board[spaceAvailable][0] !== playerTurn) {
+		console.log('jail2')
 		var jailPiece = board[spaceAvailable].pop();
 		console.log(jailPiece);
 		if(jailPiece === -1) {
@@ -496,6 +498,21 @@ $('.roll').on('click', function(){
 });
 
 
+// var sendOpponentToJail = function(spaceAvailable, playerTurn) {
+// 	if(board[spaceAvailable].length === 1 && board[spaceAvailable][0] !== playerTurn) {
+// 		var jailPiece = board[spaceAvailable].pop();
+// 		console.log(jailPiece);
+// 		if(jailPiece === -1) {
+// 			bJail.push(jailPiece);
+// 		}
+// 		else {
+// 			wJail.push(jailPiece);
+// 		}
+// 	}
+// }
+
+
+
 //function where i click a die and recieve the value
 $('#dice').on('click', '.di', function(event) {
 	diceClicked = parseInt($(event.target).html());
@@ -507,25 +524,40 @@ $('#dice').on('click', '.di', function(event) {
 		
 		if (24 - diceClicked === escapeBD1[0] && escapeBD2.length === 0) {
 			var free = bJail.pop();
+
+			var space = 24 - diceClicked;
+			sendOpponentToJail(space, playerTurn);
+
 			board[24 - diceClicked].push(free);
+			
 			renderBoard();
 			renderJail(bJail, wJail);
 			if(bJail.length === 0) return;
-			alert("Thats you're only move, Black turn!");
+			alert("Thats you're only move, White turn!");
 			changeTurn ();
 		}
 		else if (24 - diceClicked === escapeBD2[0] && escapeBD1.length === 0) {
 			var free = bJail.pop();
+
+			var space = 24 - diceClicked;
+			sendOpponentToJail(space, playerTurn);
+
 			board[24 - diceClicked].push(free);
+			
 			renderBoard();
 			renderJail(bJail, wJail);
 			if(bJail.length === 0) return;
-			alert("Thats you're only move, Black turn!");
+			alert("Thats you're only move, White turn!");
 			changeTurn();
 		}
 		else if (24 - diceClicked === escapeBD2[0] && escapeBD1.length === 1) {
 			var free = bJail.pop();
+
+			var space = 24 - diceClicked;
+			sendOpponentToJail(space, playerTurn);
+
 			board[24 - diceClicked].push(free);
+			
 			renderBoard();
 			renderJail(bJail, wJail);
 			if (amtOfDiceClicked === 2){
@@ -534,7 +566,12 @@ $('#dice').on('click', '.di', function(event) {
 		}
 		else if (24 - diceClicked === escapeBD1[0] && escapeBD2.length === 1) {
 			var free = bJail.pop();
+
+			var space = 24 - diceClicked;
+			sendOpponentToJail(space, playerTurn);
+
 			board[24 - diceClicked].push(free);
+			
 			renderBoard();
 			renderJail(bJail, wJail);
 			if (amtOfDiceClicked === 2){
@@ -547,6 +584,10 @@ $('#dice').on('click', '.di', function(event) {
 		
 		if (diceClicked - 1 === escapeD1[0] && escapeD2.length === 0) {
 			var free = wJail.pop();
+
+			var space = diceClicked - 1;
+			sendOpponentToJail(space, playerTurn);
+
 			board[diceClicked - 1].push(free);
 			renderBoard();
 			renderJail(bJail, wJail);
@@ -556,6 +597,10 @@ $('#dice').on('click', '.di', function(event) {
 		}
 		else if (diceClicked - 1 === escapeD2[0] && escapeD1.length === 0) {
 			var free = wJail.pop();
+
+			var space = diceClicked - 1;
+			sendOpponentToJail(space, playerTurn);
+
 			board[diceClicked - 1].push(free);
 			renderBoard();
 			renderJail(bJail, wJail);
@@ -565,6 +610,10 @@ $('#dice').on('click', '.di', function(event) {
 		}
 		else if (diceClicked - 1 === escapeD2[0] && escapeD1.length === 1) {
 			var free = wJail.pop();
+
+			var space = diceClicked - 1;
+			sendOpponentToJail(space, playerTurn);
+
 			board[diceClicked - 1].push(free);
 			renderBoard();
 			renderJail(bJail, wJail);
@@ -574,6 +623,10 @@ $('#dice').on('click', '.di', function(event) {
 		}
 		else if (diceClicked - 1 === escapeD1[0] && escapeD2.length === 1) {
 			var free = wJail.pop();
+
+			var space = diceClicked - 1;
+			sendOpponentToJail(space, playerTurn);
+			
 			board[diceClicked - 1].push(free);
 			renderBoard();
 			renderJail(bJail, wJail);
@@ -644,12 +697,12 @@ setups.blackInHomeQ = function() {
 	   [], 
 	   [1],
 
-	   [], 
-	   [1,1], 
-	   [], 
-	   [1,1], 
-	   [], 
-	   [1,1]
+	   [1], 
+	   [1], 
+	   [1], 
+	   [1], 
+	   [1], 
+	   [1]
 	];
 
 	renderBoard();
