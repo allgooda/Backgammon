@@ -16,7 +16,7 @@
 - [x] As a player, if my piece goes to the jail i should be able to see visually that i have pieces in the jail.
 - [x] As a player, my opponent should not be able to move any other pieces when they have a piece in jail.
 - [x] As a player, if I roll a specific #, I should be able to bring my piece back if it has been eliminated by another player.	
-- []  As a player, when I come back onto the board after being in jail, and I land on a lone peice of the opposite player,
+- [x]  As a player, when I come back onto the board after being in jail, and I land on a lone peice of the opposite player,
 that piece should go to jail.
 
 ### Current

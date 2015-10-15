@@ -626,7 +626,7 @@ $('#dice').on('click', '.di', function(event) {
 
 			var space = diceClicked - 1;
 			sendOpponentToJail(space, playerTurn);
-			
+
 			board[diceClicked - 1].push(free);
 			renderBoard();
 			renderJail(bJail, wJail);
@@ -676,11 +676,11 @@ var setups = {};
 
 setups.blackInHomeQ = function() {
 	board = [
-	   [],
+	   [-1],
 	   [-1, -1],
-	   [],
+	   [-1],
 	   [-1, -1], 
-	   [], 
+	   [-1], 
 	   [-1, -1],
 
 	   [-1], 
@@ -694,14 +694,14 @@ setups.blackInHomeQ = function() {
 	   [1], 
 	   [1], 
 	   [-1], 
-	   [], 
+	   [-1], 
 	   [1],
 
+	   [1,1], 
 	   [1], 
+	   [1,1], 
 	   [1], 
-	   [1], 
-	   [1], 
-	   [1], 
+	   [1,1], 
 	   [1]
 	];
 

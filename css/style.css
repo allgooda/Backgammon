@@ -2,6 +2,10 @@ body {
 	background: grey;
 }
 
+div.h2 {
+	font-color: white;
+	font-size: 30px;
+}
 
 .bothjail {
 	width: 50px;
