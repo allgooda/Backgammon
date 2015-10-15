@@ -348,10 +348,10 @@ var sendOpponentToJail = function(spaceAvailable, playerTurn) {
 //to the jail divs on the board.
 var renderJail = function(bJail, wJail) {
 	if(bJail.length === 0) {
-		$('#jail1').empty();
+		$('#jail1').html(0);
 	}
 	if(wJail.length === 0) {
-		$('#jail2').empty();	
+		$('#jail2').html(0);	
 		}
 	for (var i = 0; i < wJail.length; i++) {
 		$('#jail2').html(i + 1);
@@ -484,6 +484,7 @@ $('.roll').on('click', function(){
 //function where i click a die and recieve the value
 $('#dice').on('click', '.di', function(event) {
 	diceClicked = parseInt($(event.target).html());
+	
 	for (var i = 0; i < escape.length; i++) {
 		if(diceClicked - 1 === escape[i] && playerTurn === 1) {
 			var free = wJail.pop();

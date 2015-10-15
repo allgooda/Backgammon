@@ -2,6 +2,7 @@ body {
 	background: grey;
 }
 
+
 .bothjail {
 	width: 50px;
 	height: 50px;
@@ -9,6 +10,8 @@ body {
 	border-radius: 50%;
 	background: white;
 }
+
+
 
 #board { 
 	margin-top: 15px;
@@ -80,6 +83,13 @@ div.di {
 .selected-piece {
 	border: solid 3px red;
 	margin-left: 3px;
+}
+
+#jail1 {
+	text-align: center;
+}
+#jail2 {
+	text-align: center;
 }
 
 #home {
