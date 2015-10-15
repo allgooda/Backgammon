@@ -69,7 +69,8 @@ var totalBlackPieces = 0;
 var totalWhitePieces = 0;
 var escapeD1;
 var escapeD2;
-var escapeB;
+var escapeBD1;
+var escapeBD2;
 
 //this function checks if a space is already taken by two or more of the other 
 //players pieces
@@ -416,7 +417,7 @@ var checkForEscapeWhiteD1 = function(d1, playerTurn) {
 	if(board[d1 - 1][0] === playerTurn){
 		possibleMovesD1.push(d1 - 1);
 	}
-	console.log(possibleMovesD1);
+	
 	return possibleMovesD1;
 }
 
@@ -428,28 +429,35 @@ var checkForEscapeWhiteD2 = function(d2, playerTurn) {
 	if(board[d2 - 1][0] === playerTurn){
 		possibleMovesD2.push(d2 - 1);
 	}
-	console.log(possibleMovesD2);
+	
 	return possibleMovesD2;
 }
 
+//the following two functions
 //checks dice values to home board for black
 //to see if they are eligible to escape jail
-var checkForEscapeBlack = function(d1, d2, playerTurn) {
-	var possibleMoves = [];
+var checkForEscapeBlackD1 = function(d1, playerTurn) {
+	var possibleMovesBD1 = [];
 	if(board[24 - d1].length < 2 && board[24 - d1][0] !== playerTurn) {
-		possibleMoves.push(24 - d1);
+		possibleMovesBD1.push(24 - d1);
 	}
 	if(board[24 - d1][0] === playerTurn){
-		possibleMoves.push(24 - d1);
+		possibleMovesBD1.push(24 - d1);
 	}
+	console.log(possibleMovesBD1);
+	return possibleMovesBD1;
+}
+
+var checkForEscapeBlackD2 = function(d2, playerTurn) {
+	var possibleMovesBD2 = [];
 	if(board[24 - d2].length < 2 && board[24 - d2][0] !== playerTurn) {
-		possibleMoves.push(24 - d2);
+		possibleMovesBD2.push(24 - d2);
 	}
 	if(board[24 - d2][0] === playerTurn){
-		possibleMoves.push(24 - d2);
+		possibleMovesBD2.push(24 - d2);
 	}
-	console.log(possibleMoves);
-	return possibleMoves;
+	console.log(possibleMovesBD2);
+	return possibleMovesBD2;
 }
 
 
@@ -466,13 +474,11 @@ $('.roll').on('click', function(){
 	$(this).prop("disabled", true);
 	
 	if (bJail.length > 0 && playerTurn === -1) {
-		escapeB = checkForEscapeBlack(d1, d2, playerTurn);
-		if(escapeB.length === 0) {
+		escapeBD1 = checkForEscapeBlackD1(d1, playerTurn);
+		escapeBD2 = checkForEscapeBlackD2(d2, playerTurn);
+		if(escapeBD1.length === 0 && escapeBD2.length === 0) {
 			alert('No possible Moves! White Turn.');
-			changeTurn
-		}
-		else if (escapeB.length >= 1) {
-			return;
+			changeTurn();
 		}
 	}
 	if (wJail.length > 0 && playerTurn === 1) {
@@ -489,16 +495,6 @@ $('.roll').on('click', function(){
 	}
 });
 
-// for (var i = 0; i < escape.length; i++) {
-// 		if(diceClicked - 1 === escape[i] && playerTurn === 1) {
-// 			var free = wJail.pop();
-// 			board[diceClicked - 1].push(free);
-// 			renderBoard();
-// 			renderJail(bJail, wJail);
-// 			if (diceClicked === 2) {
-// 				changeTurn();
-// 			}
-// 		}
 
 //function where i click a die and recieve the value
 $('#dice').on('click', '.di', function(event) {
@@ -506,6 +502,46 @@ $('#dice').on('click', '.di', function(event) {
 	amtOfDiceClicked = amtOfDiceClicked + 1;
 	$(this).css('background', 'red');
 	$(this).prop('disabled', true);
+
+	if(playerTurn === -1 && bJail.length > 0) {
+		
+		if (24 - diceClicked === escapeBD1[0] && escapeBD2.length === 0) {
+			var free = bJail.pop();
+			board[24 - diceClicked].push(free);
+			renderBoard();
+			renderJail(bJail, wJail);
+			if(bJail.length === 0) return;
+			alert("Thats you're only move, Black turn!");
+			changeTurn ();
+		}
+		else if (24 - diceClicked === escapeBD2[0] && escapeBD1.length === 0) {
+			var free = bJail.pop();
+			board[24 - diceClicked].push(free);
+			renderBoard();
+			renderJail(bJail, wJail);
+			if(bJail.length === 0) return;
+			alert("Thats you're only move, Black turn!");
+			changeTurn();
+		}
+		else if (24 - diceClicked === escapeBD2[0] && escapeBD1.length === 1) {
+			var free = bJail.pop();
+			board[24 - diceClicked].push(free);
+			renderBoard();
+			renderJail(bJail, wJail);
+			if (amtOfDiceClicked === 2){
+				changeTurn();
+			}
+		}
+		else if (24 - diceClicked === escapeBD1[0] && escapeBD2.length === 1) {
+			var free = bJail.pop();
+			board[24 - diceClicked].push(free);
+			renderBoard();
+			renderJail(bJail, wJail);
+			if (amtOfDiceClicked === 2){
+				changeTurn();
+			}
+		}
+	}
 
 	if(playerTurn === 1 && wJail.length > 0) {
 		
@@ -546,19 +582,6 @@ $('#dice').on('click', '.di', function(event) {
 			}
 		}
 	}
-	
-	// 	else if(24 - diceClicked === escape[i] && playerTurn === -1) {
-	// 		var freeB = bJail.pop();
-	// 		board[24 - diceClicked].push(freeB);
-	// 		renderBoard();
-	// 		renderJail(bJail, wJail);
-	// 		if (diceClicked === 2) {
-	// 			changeTurn();
-	// 		}
-	// 	}
-	// }
-	
-	
 	console.log('clicked!')
 });
  
@@ -616,17 +639,17 @@ setups.blackInHomeQ = function() {
 	  
 	   [-1], 
 	   [1], 
-	   [], 
+	   [1], 
 	   [-1], 
 	   [], 
 	   [1],
 
 	   [], 
-	   [-1], 
+	   [1,1], 
 	   [], 
-	   [1], 
+	   [1,1], 
 	   [], 
-	   [-1]
+	   [1,1]
 	];
 
 	renderBoard();
