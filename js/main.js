@@ -355,6 +355,11 @@ var renderJail = function(bJail, wJail) {
 	}
 }
 
+//this function checks to see if the dice rolled matches the 
+//space to move to
+
+
+
 $('#board').on('click', '.space', function(event) {
 	if (!$currentPiece) return;
 
@@ -374,7 +379,7 @@ $('#board').on('click', '.space', function(event) {
 
 	//check if the space cliced is take by two or more of the other players pieces
 	//if true end click event function
-	if(checkSpaceAvailable(spaceAvailable, playerTurn) === true) return;
+	if(checkSpaceAvailable(spaceAvailable, playerTurn)) return;
 
 	//need to call a function to see if there is only one piece of the other
 	//player on the space, and if so send piece to the jail.
@@ -391,6 +396,13 @@ $('#board').on('click', '.space', function(event) {
 		changeTurn();
 	}
 });
+
+
+//writing function to check if players dice roll can even get them out of jail
+var outOfJail = function() {
+
+}
+
 
 //This click function rolls dice and assigns the two values
 //to variables d1 and d2
@@ -413,12 +425,21 @@ $('#dice').on('click', '.di', function(event) {
 	amtOfDiceClicked += 1;
 	console.log('clicked!')
 });
+
+
+
+
+
  
 //This click function attains the id of the parent div
 //so that i can reference a function containing a switch statement
 //in order to assign a starting position for when a player makes
 //moves
 $('#board').on('click', '.piece', function(event) {
+	//statements below check if the player has any pieces in jail
+	if (bJail.length > 0 && playerTurn === -1) return;
+	if (wJail.length > 0 && playerTurn === 1) return;
+
 	if(amtOfDiceClicked === 0) return;
 	var pieceClass = ($(this).attr('class'));
 	
@@ -435,7 +456,6 @@ $('#board').on('click', '.piece', function(event) {
 
 	if(allInHomeQuad(playerTurn)) goingHome(playerTurn);
 
-	console.log(event.target.id);
 });
 
 

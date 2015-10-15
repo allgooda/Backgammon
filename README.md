@@ -14,6 +14,7 @@
 - [x] As a player, when I win the board should reset.
 - [x] As a player, when I land on another player’s single piece, the piece should go to the jail.
 - [x] As a player, if my piece goes to the jail i should be able to see visually that i have pieces in the jail.
+- [] As a player, my opponent should not be able to move any other pieces when they have a piece in jail.
 - [] As a player, if I roll a specific #, I should be able to bring my piece back if it has been eliminated by another player.	
 
 ### Current
