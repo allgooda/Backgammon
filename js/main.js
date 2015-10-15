@@ -67,6 +67,7 @@ var playerTurn = -1;
 var amtOfDiceClicked = 0;
 var totalBlackPieces = 0;
 var totalWhitePieces = 0;
+var escape;
 
 //this function checks if a space is already taken by two or more of the other 
 //players pieces
@@ -398,9 +399,24 @@ $('#board').on('click', '.space', function(event) {
 });
 
 
-//writing function to check if players dice roll can even get them out of jail
-var outOfJail = function() {
+//checks dice values to home board for black
 
+var checkForEscapeWhite = function(d1, d2, playerTurn) {
+	var possibleMoves = [];
+	if(board[d1 - 1].length < 2 && board[d1-1][0] !== playerTurn) {
+		possibleMoves.push(d1 - 1)
+	}
+	if(board[d1 - 1][0] === playerTurn){
+		possibleMoves.push(d1 - 1)
+	}
+	if(board[d2 - 1].length < 2 && board[d1-1][0] !== playerTurn) {
+		possibleMoves.push(d2 - 1)
+	}
+	if(board[d2 - 1][0] === playerTurn){
+		possibleMoves.push(d2 - 1)
+	}
+	console.log(possibleMoves);
+	return possibleMoves;
 }
 
 
@@ -415,11 +431,25 @@ $('.roll').on('click', function(){
 	die1.innerHTML = d1;
 	die2.innerHTML = d2;
 	$(this).prop("disabled", true);
+	
+	if (bJail.length > 0 && playerTurn === -1);
+	if (wJail.length > 0 && playerTurn === 1) {
+		escape = checkForEscapeWhite(d1, d2, playerTurn);
+		if (escape.length === 0) {
+			alert('No possible Moves! Black Turn.');
+			changeTurn();
+		}
+		else if (escape.length >= 1) {
+			return;
+		}
+		console.log(escape);
+	}
 });
 
 //function where i click a die and recieve the value
 $('#dice').on('click', '.di', function(event) {
 	diceClicked = parseInt($(event.target).html());
+	for (var i = 0; i < escape) {}
 	$(this).css('background', 'red');
 	$(this).prop('disabled', true);
 	amtOfDiceClicked += 1;
@@ -469,12 +499,12 @@ var setups = {};
 
 setups.blackInHomeQ = function() {
 	board = [
-	   [-1],
 	   [],
+	   [-1, -1],
 	   [],
+	   [-1, -1], 
 	   [], 
-	   [], 
-	   [],
+	   [-1, -1],
 
 	   [-1], 
 	   [1], 
