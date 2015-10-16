@@ -3,23 +3,12 @@ body {
 }
 
 div.h2 {
-	font-color: white;
-	font-size: 30px;
+	float: left;
 }
 
 #turn {
 	width: 100%;
 }
-
-.bothjail {
-	width: 50px;
-	height: 50px;
-	border: 2px black solid;
-	border-radius: 50%;
-	background: white;
-}
-
-
 
 #board { 
 	margin-top: 15px;
@@ -38,7 +27,7 @@ div.h2 {
 }
 
 .even {
-	background: red;
+	background: lightgreen;
 }
 
 .odd {
@@ -49,7 +38,6 @@ div.h2 {
 	width: 30px;
 	border-radius: 15%;
 	height: 150px;
-	
 	float: left;
 	margin: 8px 10px 0px 9px;
 }
@@ -93,50 +81,67 @@ div.di {
 	margin-left: 3px;
 }
 
-#jail1 {
-	text-align: center;
+#jail {
+	float: left;
+	margin: -70px 0px 0px 40px;	
 }
+
+#jail1 {
+	background: black;
+	color: white;
+}
+
 #jail2 {
+	background: white;
+	color: black;
+}
+
+.bothjail {
+	border: 2px black solid;
 	text-align: center;
+	border-radius: 50%;
+	height: 50px;
+	width: 50px;
+	margin: 20px 0px 20px 0px;
 }
 
 #home {
-	margin: -76px 20px 0px 0px;
+	margin: -70px 40px 0px 0px;
 	float: right;
-	text-align: center;
 }
 
 #home1 {
 	background: black;
 	color: white;
-	text-align: center;
 }
 
 #home2 {
 	background: white;
+	color: black;
 }
-
 
 .homebase {
-	width: 50px;
-	height: 50px;
 	border: 2px black solid;
-	margin: 20px 0px 20px 0px;
-	border-radius: 50%;	
+	text-align: center;
+	border-radius: 50%;
+	height: 50px;
+	width: 50px;
+	margin: 20px 0px 20px 0px;	
 }
 
+#player {
+	width: 648px;
+	clear: both;
+	text-align: center;
+	margin: 0px auto;
+}
 
-
-
-@media (min-width: 1260px) {
-
-	.homebase {
-		width: 50px;
-		height: 50px;
-		border: 2px black solid;
-		margin: -180px 250px 0px 0px;
-		border-radius: 50%;
-
+@media (min-width: 1200px) {
+	#jail {
+		margin: -420px 0px 0px 250px;
+	}
+	#home {
+		margin: -420px 250px 0px 0px;
 	}
 
 }

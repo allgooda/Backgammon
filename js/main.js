@@ -67,6 +67,9 @@ var escapeD2;
 var escapeBD1;
 var escapeBD2;
 
+$(document).on("ready page:load", function() {
+	$('#playerturn').html('FIRST TURN: BLACK');
+});
 
 var pointsInQuad = function(quadrant) {
 	var startPoint = (quadrant - 1) * 6;
@@ -85,6 +88,12 @@ var changeTurn = function() {
 	$('.di').css('background', '#F5F5F5');
 	diceClicked = 0;
 	amtOfDiceClicked = 0;
+	if (playerTurn === -1) {
+		$('#playerturn').html("TURN: BLACK").css('color', 'black');
+	}
+	else {
+		$('#playerturn').html("TURN: WHITE").css('color', 'white');
+	}
 }
 
 
