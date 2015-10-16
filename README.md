@@ -7,9 +7,13 @@
 ## TECNOLOGIES USED
 
 -HTML
+
 -Javascript
+
 -CSS
+
 -Jquery
+
 -Sublime Text - Text Editor
 
 ##DESIGN
