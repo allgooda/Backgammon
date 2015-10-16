@@ -3,80 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="css/style.css">
-
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <title>BACKGAMMON</title>
 </head>
-<body>
+  <body>
+    <div id='board'>
+      <div id='topLeft' class='top quadrant'>
+        <div class='space odd' id='13'>13</div>
+        <div class='space even' id='14'>14</div>
+        <div class='space odd' id='15'>15</div>
+        <div class='space even' id='16'>16</div>
+        <div class='space odd' id='17'>17</div>
+        <div class='space even' id='18'>18</div>
+      </div>
 
+      <div id='topRight' class= 'top quadrant'>
+        <div class='space odd' id='19'>19
+        </div>
+        <div class='space even' id='20'>20</div>
+        <div class='space odd' id='21'>21</div>
+        <div class='space even' id='22'>22</div>
+        <div class='space odd' id='23'>23</div>
+        <div class='space even' id='24'>24
+        </div> 
+      </div>
 
+      <br>
 
-<div id='board'>
-  <div id='topLeft' class='top quadrant'>
-    <div class='space odd' id='13'>13</div>
-    <div class='space even' id='14'>14</div>
-    <div class='space odd' id='15'>15</div>
-    <div class='space even' id='16'>16</div>
-    <div class='space odd' id='17'>17</div>
-    <div class='space even' id='18'>18</div>
-  </div>
+      <div id='botLeft' class='bottom quadrant'>
+        <div class='space odd' id='12'>12</div>
+        <div class='space even' id='11'>11</div>
+        <div class='space odd' id='10'>10</div>
+        <div class='space even' id='9'>9</div>
+        <div class='space odd' id='8'>8</div>
+        <div class='space even' id='7'>7</div> 
+      </div>
 
-  <div id='topRight' class= 'top quadrant'>
-    <div class='space odd' id='19'>19
+      <div id='botRight' class= 'bottom quadrant'>
+        <div class='space odd' id='6'>6</div>
+        <div class='space even' id='5'>5</div>
+        <div class='space odd' id='4'>4</div>
+        <div class='space even' id='3'>3</div>
+        <div class='space odd' id='2'>2</div>
+        <div class='space even' id='1'>1</div> 
+      </div>
     </div>
-    <div class='space even' id='20'>20</div>
-    <div class='space odd' id='21'>21</div>
-    <div class='space even' id='22'>22</div>
-    <div class='space odd' id='23'>23</div>
-    <div class='space even' id='24'>24
-    </div> 
-  </div>
 
-<br>
+    <br>
 
-  <div id='botLeft' class='bottom quadrant'>
-    <div class='space odd' id='12'>12</div>
-    <div class='space even' id='11'>11</div>
-    <div class='space odd' id='10'>10</div>
-    <div class='space even' id='9'>9</div>
-    <div class='space odd' id='8'>8</div>
-    <div class='space even' id='7'>7</div> 
-  </div>
-
-  <div id='botRight' class= 'bottom quadrant'>
-    <div class='space odd' id='6'>6</div>
-    <div class='space even' id='5'>5</div>
-    <div class='space odd' id='4'>4</div>
-    <div class='space even' id='3'>3</div>
-    <div class='space odd' id='2'>2</div>
-    <div class='space even' id='1'>1</div> 
-  </div>
-</div>  
-<br>
-
-<div id='dice'>
-  <div id='die1' class='di'></div>
-  <div id='die2' class='di'></div>
-  <br>
-  <br>
-  <button class='roll btn-default btn-lg'>ROLL</button>
-</div>
-  
+    <div id='dice'>
+      <div id='die1' class='di'></div>
+      <div id='die2' class='di'></div>
+      <br>
+      <br>
+      <button class='roll btn-default btn-lg'>ROLL</button>
+    </div>
+      
 
 
-<div id='home'>
-<h2>HOME</h2>
-  <div id='home1' class='homebase'><br>0</div>
-  <div id='home2' class='homebase'><br>0</div>
-</div>
+    <div id='home'>
+    <h2>HOME</h2>
+      <div id='home1' class='homebase'><br>0</div>
+      <div id='home2' class='homebase'><br>0</div>
+    </div>
 
-<div id='jail'>
-  <div id='jail1' class='bothjail'><br>0</div>
-  <div id='jail2' class='bothjail'><br>0</div>
-</div>
+    <div id='jail'>
+      <div id='jail1' class='bothjail'><br>0</div>
+      <div id='jail2' class='bothjail'><br>0</div>
+    </div>
 
-  <script src='js/main.js'></script>
-  
-</body>
+    <script src='js/main.js'></script>
+  </body>
 </html>
 
