@@ -1,5 +1,13 @@
 # BACKGAMMON
 
+## DESCRIPTION
+
+-The game I made is called backgammon, it is one of the oldest games in the world. It is a two player board game. One player is white and the other black. The object of the game is for one player to get all 15 of their pieces to the other side of the board and into their home base.
+
+## TECNOLOGIES USED
+	In designing my game I used a wireframe. See below:
+	!(https://i.imgur.com/huXsYJx.png)
+
 ## USER STORIES
 - [x] As a player, I can not move pieces off of the board unless they are all in my home quadrant.
 - [x] As a player, i cannot click my opponents peices when it is my turn.

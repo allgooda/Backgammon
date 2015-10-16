@@ -45,12 +45,7 @@ var board = [
   /* Point 12, id: 24 */ [-1, -1]
 ];
 
-var pointsInQuad = function(quadrant) {
-	var startPoint = (quadrant - 1) * 6;
-	var endPoint = (quadrant * 6);
 
-	return board.slice(startPoint, endPoint);
-}
 
 var bJail = [];
 var wJail = [];
@@ -72,10 +67,12 @@ var escapeD2;
 var escapeBD1;
 var escapeBD2;
 
-//this function checks if a space is already taken by two or more of the other 
-//players pieces
 
-
+var pointsInQuad = function(quadrant) {
+	var startPoint = (quadrant - 1) * 6;
+	var endPoint = (quadrant * 6);
+	return board.slice(startPoint, endPoint);
+}
 
 
 //turn function - to change turns after a player finishes moving
@@ -142,14 +139,14 @@ var renderBlackHome = function(length) {
 		totalBlackPieces += 1;
 		$('#home1').text(totalBlackPieces);
 		if(winnerCheck()) {
-				alertWinnerBlack();
-				changeTurn();
-				boardReset();
-				totalBlackPieces = 0;
-				totalWhitePieces = 0;
-			} 
+			alertWinnerBlack();
+			changeTurn();
+			boardReset();
+			totalBlackPieces = 0;
+			totalWhitePieces = 0;		
+		} 
 		if(amtOfDiceClicked === 2) { 	
-		changeTurn();
+			changeTurn();
 		}
 	}
 }
@@ -160,14 +157,14 @@ var renderWhiteHome = function(length) {
 		totalWhitePieces += 1;
 		$('#home2').text(totalWhitePieces);
 		if(winnerCheck()) {
-				alertWinnerWhite();
-				boardReset();
-				changeTurn();
-				totalBlackPieces = 0;
-	 			totalWhitePieces = 0;
+			alertWinnerWhite();
+			boardReset();
+			changeTurn();
+			totalBlackPieces = 0;
+	 		totalWhitePieces = 0;		
 			} 
 		if(amtOfDiceClicked === 2) {
-		changeTurn();
+			changeTurn();
 		}
 	}
 }
@@ -177,7 +174,8 @@ var renderWhiteHome = function(length) {
 var winnerCheck = function() {
 	if (playerTurn === -1) {
 		return (totalBlackPieces === 15);
-	} else {
+	} 
+	else {
 		return (totalWhitePieces === 15);
 	}
 }
@@ -196,7 +194,6 @@ var alertWinnerBlack = function() {
 
 //THIS FUNCTION RESETS THE BOARD WHEN THE GAME IS OVER LOL!
 var boardReset = function() {
-	console.log('reset!!')
 	board = [
 
   /* BOTTOM */
@@ -676,33 +673,33 @@ var setups = {};
 
 setups.blackInHomeQ = function() {
 	board = [
-	   [-1],
+	   [-1, -1, -1, -1],
+	   [-1, -1, -1],
 	   [-1, -1],
-	   [-1],
 	   [-1, -1], 
-	   [-1], 
+	   [-1, -1], 
 	   [-1, -1],
 
-	   [-1], 
-	   [1], 
-	   [-1], 
-	   [1], 
-	   [-1], 
-	   [1],
+	   [], 
+	   [], 
+	   [], 
+	   [], 
+	   [], 
+	   [],
 	  
-	   [-1], 
-	   [1], 
-	   [1], 
-	   [-1], 
-	   [-1], 
-	   [1],
+	   [], 
+	   [], 
+	   [], 
+	   [], 
+	   [], 
+	   [],
 
 	   [1,1], 
-	   [1], 
+	   [1,1,1,1], 
 	   [1,1], 
 	   [1], 
 	   [1,1], 
-	   [1]
+	   [1,1,1,1]
 	];
 
 	renderBoard();
