@@ -6,7 +6,8 @@
 
 ## TECNOLOGIES USED
 	In designing my game I used a wireframe. See below:
-	![wireframe](https://i.imgur.com/huXsYJx.png)
+	
+![wireframe](https://i.imgur.com/huXsYJx.png)
 
 ## USER STORIES
 - [x] As a player, I can not move pieces off of the board unless they are all in my home quadrant.
