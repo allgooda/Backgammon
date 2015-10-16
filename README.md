@@ -5,9 +5,26 @@
 -The game I made is called backgammon, it is one of the oldest games in the world. It is a two player board game. One player is white and the other black. The object of the game is for one player to get all 15 of their pieces to the other side of the board and into their home base.
 
 ## TECNOLOGIES USED
+
+-HTML
+-Javascript
+-CSS
+-Jquery
+-Sublime Text - Text Editor
+
+##DESIGN
+
 	In designing my game I used a wireframe. See below:
-	
+
 ![wireframe](https://i.imgur.com/huXsYJx.png)
+
+##INSTALLATION INSTRUCTIONS
+
+-Go to this link: http://allgooda.github.io/first_project/
+
+-Click roll to begin playing. As I have it now, black always goes first. I will eventually add a feature to decide who goes first, but until then you will have to decide on your own. May I suggest flipping a coin?
+
+
 
 ## USER STORIES
 - [x] As a player, I can not move pieces off of the board unless they are all in my home quadrant.
@@ -28,17 +45,15 @@
 - [x]  As a player, when I come back onto the board after being in jail, and I land on a lone peice of the opposite player,
 that piece should go to jail.
 
+
+#### UNSOLVED ISSUES
+
 ### Current
-- [ ] As a player, if I have not selected a di, I should not be able to move a piece
+- [ ] As a player, if I have not selected a di, I should not be able to select a piece
 
 ### MVP
 - [ ] As a player sometimes I move a piece but then change my mind. I would like a way to reset if i have not finished a move.
-
-
-
-
-
-### Icebox
+### Icebox/U
 - [ ] As a player, in order to start the game, I need a way to decide who goes first.
 - [ ] As a player, i would like a way to keep track of who’s turn it is.
 - [ ] As a player I would like a way to enter my Name.
