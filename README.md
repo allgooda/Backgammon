@@ -20,7 +20,7 @@ Sublime Text |
 
 ##DESIGN
 
-I used moqups.com to create a simple wirefram for my Backgammon board:
+I used moqups.com to create a simple wireframe for my Backgammon board:
 
 ![wireframe](https://i.imgur.com/o8h1zby.png)
 
@@ -29,8 +29,6 @@ I used moqups.com to create a simple wirefram for my Backgammon board:
 Go to this link: http://allgooda.github.io/first_project/
 
 Click roll to begin playing. As I have it now, black always goes first. I will eventually add a feature to decide who goes first, but until then you will have to decide on your own. May I suggest flipping a coin?
-
-
 
 ## USER STORIES
 - [x] As a player, I can not move pieces off of the board unless they are all in my home quadrant.
