@@ -9,15 +9,13 @@ For further information on game play please visit the following link to the US B
 
 ## TECNOLOGIES USED
 
--HTML
-
--Javascript
-
--CSS
-
--Jquery
-
--Sublime Text - Text Editor
+Development | Design |
+----| ---|
+HTML | Moqups
+Javascript | 
+CSS |
+Jquery |
+Sublime Text | Text Editor
 
 ##DESIGN
 
@@ -29,7 +27,7 @@ For further information on game play please visit the following link to the US B
 
 -Go to this link: http://allgooda.github.io/first_project/
 
--Click roll to begin playing. As I have it now, black always goes first. I will eventually add a feature to decide who goes first, but until then you will have to decide on your own. May I suggest flipping a coin?
+Click roll to begin playing. As I have it now, black always goes first. I will eventually add a feature to decide who goes first, but until then you will have to decide on your own. May I suggest flipping a coin?
 
 
 
