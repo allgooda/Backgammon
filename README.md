@@ -20,9 +20,9 @@ Sublime Text |
 
 ##DESIGN
 
-	In designing my game I used a wireframe. See below:
+I used moqups.com to create a simple wirefram for my Backgammon board:
 
-![wireframe](https://i.imgur.com/huXsYJx.png)
+![wireframe](https://i.imgur.com/o8h1zby.png)
 
 ##INSTALLATION INSTRUCTIONS
 
