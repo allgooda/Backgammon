@@ -26,7 +26,7 @@ I used moqups.com to create a simple wireframe for my Backgammon board:
 
 ##INSTALLATION INSTRUCTIONS
 
-Go to this link: http://allgooda.github.io/first_project/
+Go to this link: http://allgooda.github.io/Backgammon/
 
 Click roll to begin playing. As I have it now, black always goes first. I will eventually add a feature to decide who goes first, but until then you will have to decide on your own. May I suggest flipping a coin?
 
