@@ -15,7 +15,7 @@ HTML | Moqups
 Javascript | 
 CSS |
 Jquery |
-Sublime Text | Text Editor
+Sublime Text | 
 
 ##DESIGN
 
