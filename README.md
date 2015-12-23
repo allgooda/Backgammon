@@ -1,5 +1,5 @@
 # [BACKGAMMON](http://allgooda.github.io/Backgammon/)
-(https://i.imgur.com/d9qUMnB.png)
+!(https://i.imgur.com/d9qUMnB.png)
 
 ## DESCRIPTION
 
