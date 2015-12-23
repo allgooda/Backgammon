@@ -2,7 +2,7 @@
 
 ## DESCRIPTION
 
-Backgammon is an ancient game. Archaeologists have discovered boards dating back over 5000 years. The board consists of 24 spaces called points and 30 game pieces half of which are black and the other white. The goal of the game is to move all of your pieces from one side of the board into your home board and bear the pieces off the board.
+Backgammon is an ancient and mysterious game played by emperors and common folk alike...I assume. Archaeologists have discovered boards dating back over 5000 years. The board consists of 24 spaces called points and 30 game pieces half of which are black and the other white. The goal of the game is to move all of your pieces from one side of the board into your home board and bear the pieces off the board.
 
 For further information on game play please visit the following link to the US Backgammon Federadtion website: [RULES](http://usbgf.org/learn-backgammon/rules-of-backgammon/)
 
