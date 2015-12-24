@@ -1,6 +1,5 @@
-
 // Black is -1, white is 1
-// The board representation startes in the 
+// The board representation startes in the
 // bottom-right and moves counter-
 // clockwise to the top-right. Points are
 // numbered left-to-right to ease visualizing
@@ -14,34 +13,34 @@ var board = [
   /* Point 12, id: 1  */ [1, 1],
   /* Point 11, id: 2  */ [],
   /* Point 10, id: 3  */ [],
-  /* Point 09, id: 4  */ [], 
-  /* Point 08, id: 5  */ [], 
+  /* Point 09, id: 4  */ [],
+  /* Point 08, id: 5  */ [],
   /* Point 07, id: 6  */ [-1, -1, -1, -1, -1],
 
   /* Quadrant 2 - Bottom-Left */
-  /* Point 06, id: 7  */ [], 
-  /* Point 05, id: 8  */ [-1, -1, -1], 
-  /* Point 04, id: 9  */ [], 
-  /* Point 03, id: 10 */ [], 
-  /* Point 02, id: 11 */ [], 
+  /* Point 06, id: 7  */ [],
+  /* Point 05, id: 8  */ [-1, -1, -1],
+  /* Point 04, id: 9  */ [],
+  /* Point 03, id: 10 */ [],
+  /* Point 02, id: 11 */ [],
   /* Point 01, id: 12 */ [1, 1, 1, 1, 1],
 
   /* TOP */
 
   /* Quadrant 3 - Top-Left */
-  /* Point 01, id: 13 */ [-1, -1, -1, -1, -1], 
-  /* Point 02, id: 14 */ [], 
-  /* Point 03, id: 15 */ [], 
-  /* Point 04, id: 16 */ [], 
-  /* Point 05, id: 17 */ [1, 1, 1], 
+  /* Point 01, id: 13 */ [-1, -1, -1, -1, -1],
+  /* Point 02, id: 14 */ [],
+  /* Point 03, id: 15 */ [],
+  /* Point 04, id: 16 */ [],
+  /* Point 05, id: 17 */ [1, 1, 1],
   /* Point 06, id: 18 */ [],
 
   /* Quadrant 4 - Top-Right: White Home */
-  /* Point 07, id: 19 */ [1, 1, 1, 1, 1], 
-  /* Point 08, id: 20 */ [], 
-  /* Point 09, id: 21 */ [], 
-  /* Point 10, id: 22 */ [], 
-  /* Point 11, id: 23 */ [], 
+  /* Point 07, id: 19 */ [1, 1, 1, 1, 1],
+  /* Point 08, id: 20 */ [],
+  /* Point 09, id: 21 */ [],
+  /* Point 10, id: 22 */ [],
+  /* Point 11, id: 23 */ [],
   /* Point 12, id: 24 */ [-1, -1]
 ];
 
@@ -124,7 +123,7 @@ var goingHome = function(playerTurn) {
 			bHome.push(piece[0]);
 			console.log(bHome);
 			renderBlackHome(bHome.length);
-			renderBoard();	
+			renderBoard();
 		}
 	}
 	else {
@@ -137,12 +136,12 @@ var goingHome = function(playerTurn) {
 			wHome.push(piece[0]);
 			console.log(wHome);
 			renderWhiteHome(wHome.length);
-			renderBoard();	
+			renderBoard();
 		}
 	}
 }
 
-//ADD A COUNTER TO BLACK HOME WHEN PLAYER GETS PIECES INSIDE
+//ADD A COUNTER TO BLACK HOME WHEN PLAYER GETS PIECES INSIDE HOME BASE
 var renderBlackHome = function(length) {
 	for(var i = 0; i < length; i++) {
 		totalBlackPieces += 1;
@@ -152,15 +151,15 @@ var renderBlackHome = function(length) {
 			changeTurn();
 			boardReset();
 			totalBlackPieces = 0;
-			totalWhitePieces = 0;		
-		} 
-		if(amtOfDiceClicked === 2) { 	
+			totalWhitePieces = 0;
+		}
+		if(amtOfDiceClicked === 2) {
 			changeTurn();
 		}
 	}
 }
 
-//ADD A COUNTER TO WHITE HOME WHEN PLAYER GETS PIECES INSIDE
+//ADD A COUNTER TO WHITE HOME WHEN PLAYER GETS PIECES INSIDE HOME BASE
 var renderWhiteHome = function(length) {
 	for(var i = 0; i < length; i++) {
 		totalWhitePieces += 1;
@@ -170,8 +169,8 @@ var renderWhiteHome = function(length) {
 			boardReset();
 			changeTurn();
 			totalBlackPieces = 0;
-	 		totalWhitePieces = 0;		
-			} 
+	 		totalWhitePieces = 0;
+			}
 		if(amtOfDiceClicked === 2) {
 			changeTurn();
 		}
@@ -183,7 +182,7 @@ var renderWhiteHome = function(length) {
 var winnerCheck = function() {
 	if (playerTurn === -1) {
 		return (totalBlackPieces === 15);
-	} 
+	}
 	else {
 		return (totalWhitePieces === 15);
 	}
@@ -211,34 +210,34 @@ var boardReset = function() {
   /* Point 12, id: 1  */ [1, 1],
   /* Point 11, id: 2  */ [],
   /* Point 10, id: 3  */ [],
-  /* Point 09, id: 4  */ [], 
-  /* Point 08, id: 5  */ [], 
+  /* Point 09, id: 4  */ [],
+  /* Point 08, id: 5  */ [],
   /* Point 07, id: 6  */ [-1, -1, -1, -1, -1],
 
   /* Quadrant 2 - Bottom-Left */
-  /* Point 06, id: 7  */ [], 
-  /* Point 05, id: 8  */ [-1, -1, -1], 
-  /* Point 04, id: 9  */ [], 
-  /* Point 03, id: 10 */ [], 
-  /* Point 02, id: 11 */ [], 
+  /* Point 06, id: 7  */ [],
+  /* Point 05, id: 8  */ [-1, -1, -1],
+  /* Point 04, id: 9  */ [],
+  /* Point 03, id: 10 */ [],
+  /* Point 02, id: 11 */ [],
   /* Point 01, id: 12 */ [1, 1, 1, 1, 1],
 
   /* TOP */
 
   /* Quadrant 3 - Top-Left */
-  /* Point 01, id: 13 */ [-1, -1, -1, -1, -1], 
-  /* Point 02, id: 14 */ [], 
-  /* Point 03, id: 15 */ [], 
-  /* Point 04, id: 16 */ [], 
-  /* Point 05, id: 17 */ [1, 1, 1], 
+  /* Point 01, id: 13 */ [-1, -1, -1, -1, -1],
+  /* Point 02, id: 14 */ [],
+  /* Point 03, id: 15 */ [],
+  /* Point 04, id: 16 */ [],
+  /* Point 05, id: 17 */ [1, 1, 1],
   /* Point 06, id: 18 */ [],
 
   /* Quadrant 4 - Top-Right: White Home */
-  /* Point 07, id: 19 */ [1, 1, 1, 1, 1], 
-  /* Point 08, id: 20 */ [], 
-  /* Point 09, id: 21 */ [], 
-  /* Point 10, id: 22 */ [], 
-  /* Point 11, id: 23 */ [], 
+  /* Point 07, id: 19 */ [1, 1, 1, 1, 1],
+  /* Point 08, id: 20 */ [],
+  /* Point 09, id: 21 */ [],
+  /* Point 10, id: 22 */ [],
+  /* Point 11, id: 23 */ [],
   /* Point 12, id: 24 */ [-1, -1]
 ];
 
@@ -264,7 +263,7 @@ var onlyClickMyPieces = function(piece) {
 var pad = function(n) {
 	var s = n.toString();
 	s = s.length === 1 ? '0' + s : s;
-	return s; 
+	return s;
 }
 
 // quadrant is numbered 1 to 4, in board order
@@ -299,7 +298,7 @@ var piecesInQuadrant = function(quadrant, player) {
 
 
 
-//this function tests to see if  all of a players 
+//this function tests to see if  all of a players
 //pieces are in their home quadrant.
 var allInHomeQuad = function(player) {
 	if (player === -1) {
@@ -308,12 +307,12 @@ var allInHomeQuad = function(player) {
 		        piecesInQuadrant(4, -1) === 0);
 	} else {
 		return (piecesInQuadrant(1, 1) === 0 &&
-			    piecesInQuadrant(2, 1) === 0 &&
-			    piecesInQuadrant(3, 1) === 0);
+			    	piecesInQuadrant(2, 1) === 0 &&
+			    	piecesInQuadrant(3, 1) === 0);
 	}
 }
 
-//this funtion will render the board to its current 
+//this funtion will render the board to its current
 //based on previous moves
 var renderBoard = function() {
 	for(var i =0; i < 25; i++) {
@@ -361,7 +360,7 @@ var renderJail = function(bJail, wJail) {
 		$('#jail1').html(0);
 	}
 	if(wJail.length === 0) {
-		$('#jail2').html(0);	
+		$('#jail2').html(0);
 		}
 	for (var i = 0; i < wJail.length; i++) {
 		$('#jail2').html(i + 1);
@@ -372,7 +371,7 @@ var renderJail = function(bJail, wJail) {
 	}
 }
 
-//this function checks to see if the dice rolled matches the 
+//this function checks to see if the dice rolled matches the
 //space to move to
 
 
@@ -409,7 +408,7 @@ $('#board').on('click', '.space', function(event) {
 
 	renderBoard();
 
-	if(amtOfDiceClicked === 2) { 
+	if(amtOfDiceClicked === 2) {
 		changeTurn();
 	}
 });
@@ -425,7 +424,7 @@ var checkForEscapeWhiteD1 = function(d1, playerTurn) {
 	if(board[d1 - 1][0] === playerTurn){
 		possibleMovesD1.push(d1 - 1);
 	}
-	
+
 	return possibleMovesD1;
 }
 
@@ -437,7 +436,7 @@ var checkForEscapeWhiteD2 = function(d2, playerTurn) {
 	if(board[d2 - 1][0] === playerTurn){
 		possibleMovesD2.push(d2 - 1);
 	}
-	
+
 	return possibleMovesD2;
 }
 
@@ -480,7 +479,7 @@ $('.roll').on('click', function(){
 	die1.innerHTML = d1;
 	die2.innerHTML = d2;
 	$(this).prop("disabled", true);
-	
+
 	if (bJail.length > 0 && playerTurn === -1) {
 		escapeBD1 = checkForEscapeBlackD1(d1, playerTurn);
 		escapeBD2 = checkForEscapeBlackD2(d2, playerTurn);
@@ -527,7 +526,7 @@ $('#dice').on('click', '.di', function(event) {
 	$(this).prop('disabled', true);
 
 	if(playerTurn === -1 && bJail.length > 0) {
-		
+
 		if (24 - diceClicked === escapeBD1[0] && escapeBD2.length === 0) {
 			var free = bJail.pop();
 
@@ -535,7 +534,7 @@ $('#dice').on('click', '.di', function(event) {
 			sendOpponentToJail(space, playerTurn);
 
 			board[24 - diceClicked].push(free);
-			
+
 			renderBoard();
 			renderJail(bJail, wJail);
 			if(bJail.length === 0) return;
@@ -549,7 +548,7 @@ $('#dice').on('click', '.di', function(event) {
 			sendOpponentToJail(space, playerTurn);
 
 			board[24 - diceClicked].push(free);
-			
+
 			renderBoard();
 			renderJail(bJail, wJail);
 			if(bJail.length === 0) return;
@@ -563,7 +562,7 @@ $('#dice').on('click', '.di', function(event) {
 			sendOpponentToJail(space, playerTurn);
 
 			board[24 - diceClicked].push(free);
-			
+
 			renderBoard();
 			renderJail(bJail, wJail);
 			if (amtOfDiceClicked === 2){
@@ -577,7 +576,7 @@ $('#dice').on('click', '.di', function(event) {
 			sendOpponentToJail(space, playerTurn);
 
 			board[24 - diceClicked].push(free);
-			
+
 			renderBoard();
 			renderJail(bJail, wJail);
 			if (amtOfDiceClicked === 2){
@@ -587,7 +586,7 @@ $('#dice').on('click', '.di', function(event) {
 	}
 
 	if(playerTurn === 1 && wJail.length > 0) {
-		
+
 		if (diceClicked - 1 === escapeD1[0] && escapeD2.length === 0) {
 			var free = wJail.pop();
 
@@ -643,7 +642,7 @@ $('#dice').on('click', '.di', function(event) {
 	}
 	console.log('clicked!')
 });
- 
+
 //This click function attains the id of the parent div
 //so that i can reference a function containing a switch statement
 //in order to assign a starting position for when a player makes
@@ -655,7 +654,7 @@ $('#board').on('click', '.piece', function(event) {
 
 	if(amtOfDiceClicked === 0) return;
 	var pieceClass = ($(this).attr('class'));
-	
+
 	console.log('hi');
 	if(!onlyClickMyPieces(pieceClass)) return;
 
@@ -663,7 +662,7 @@ $('#board').on('click', '.piece', function(event) {
 
 	$currentPiece = $(this);
 	$currentPiece.addClass('selected-piece');
-	
+
 	startSpot = parseInt($(this).parent().attr('id'));
 	endSpot = pieceMovement(diceClicked, startSpot, playerTurn);
 
@@ -673,9 +672,9 @@ $('#board').on('click', '.piece', function(event) {
 
 
 /* ****************************************************************************
- * 
+ *
  * CREATE TEST SETUPS
- * 
+ *
  * **************************************************************************** */
 
 var setups = {};
@@ -685,29 +684,29 @@ setups.blackInHomeQ = function() {
 	   [-1, -1, -1, -1],
 	   [-1, -1, -1],
 	   [-1, -1],
-	   [-1, -1], 
-	   [-1, -1], 
+	   [-1, -1],
+	   [-1, -1],
 	   [-1, -1],
 
-	   [], 
-	   [], 
-	   [], 
-	   [], 
-	   [], 
 	   [],
-	  
-	   [], 
-	   [], 
-	   [], 
-	   [], 
-	   [], 
+	   [],
+	   [],
+	   [],
+	   [],
 	   [],
 
-	   [1,1], 
-	   [1,1,1,1], 
-	   [1,1], 
-	   [1], 
-	   [1,1], 
+	   [],
+	   [],
+	   [],
+	   [],
+	   [],
+	   [],
+
+	   [1,1],
+	   [1,1,1,1],
+	   [1,1],
+	   [1],
+	   [1,1],
 	   [1,1,1,1]
 	];
 
