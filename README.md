@@ -1,34 +1,34 @@
-# BACKGAMMON
+# [BACKGAMMON](http://allgooda.github.io/Backgammon/)
+![Board](https://i.imgur.com/Zr3KE6P.png)
 
 ## DESCRIPTION
 
--The game I made is called backgammon, it is one of the oldest games in the world. It is a two player board game. One player is white and the other black. The object of the game is for one player to get all 15 of their pieces to the other side of the board and into their home base.
+Backgammon is an ancient and mysterious game played by emperors and common folk alike...I assume. Archaeologists have discovered boards dating back over 5000 years. The board consists of 24 spaces called points and 30 game pieces half of which are black and the other white. The goal of the game is to move all of your pieces from one side of the board into your home board and bear the pieces off the board.
+
+For further information on game play please visit the following link to the US Backgammon Federadtion website: [RULES](http://usbgf.org/learn-backgammon/rules-of-backgammon/)
+
 
 ## TECNOLOGIES USED
 
--HTML
-
--Javascript
-
--CSS
-
--Jquery
-
--Sublime Text - Text Editor
+Development | Design |
+----| ---|
+HTML | Moqups
+Javascript | 
+CSS |
+Jquery |
+Sublime Text | 
 
 ##DESIGN
 
-	In designing my game I used a wireframe. See below:
+I used moqups.com to create a simple wireframe for my Backgammon board:
 
-![wireframe](https://i.imgur.com/huXsYJx.png)
+![wireframe](https://i.imgur.com/o8h1zby.png)
 
 ##INSTALLATION INSTRUCTIONS
 
--Go to this link: http://allgooda.github.io/first_project/
+Go to this link: http://allgooda.github.io/Backgammon/
 
--Click roll to begin playing. As I have it now, black always goes first. I will eventually add a feature to decide who goes first, but until then you will have to decide on your own. May I suggest flipping a coin?
-
-
+Click roll to begin playing. As I have it now, black always goes first. I will eventually add a feature to decide who goes first, but until then you will have to decide on your own. May I suggest flipping a coin?
 
 ## USER STORIES
 - [x] As a player, I can not move pieces off of the board unless they are all in my home quadrant.
